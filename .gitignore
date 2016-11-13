@@ -52,6 +52,10 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
+settings.py
+vcs.xml
+workspace.xml
+*.idea
 
 # Flask stuff:
 instance/
