@@ -1,0 +1,43 @@
+{% extends "base_homepage.html" %}
+
+
+ {% block mainTwoServices %}
+     {% for serv in servTwo %}
+         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+             <div class="box london">
+                 <div class="box-icon">
+                     <img src="{{ serv.ppics.url }}" alt="Image" class="img-responsive">
+                 </div>
+                 <div class="info float-container">
+                     <div class="col-sm-12 london-title">
+                         <h3 class="text-uppercase">{{ serv.pname }}</h3>
+                         <h4 class="text-uppercase">{{ serv.pintro }}</h4>
+                     </div>
+                     <p>{{ serv.pshortdesc }}</p><hr />
+                     <div class="col-sm-12 location-main">
+                         <div class="pull-left location">
+                             <i class="fa fa-map-marker fa-2x"></i><span><a href="#">Details</a> </span>
+                         </div>
+                         <div class="pull-right user-icons">
+                             <a href="#"><i class="fa fa-star fa-2x"></i></a>
+                             <a href="#"><i class="fa fa-user fa-2x"></i></a>
+                             <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     {% endfor %}
+ {% endblock mainTwoServices %}
+
+
+{% block serviceImages %}
+    {% for serv in servThree %}
+        <div style="min-height: 200px;" class="col-xxs-12 col-xs-6 col-sm-6 col-md-4 col-lg-4">
+            <div class="bottom-img">
+                <img src="{{ serv.ppics.url }}" alt="{{ serv.pintro }}">
+                <p class="first">{{ serv.pname }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock serviceImages %}
