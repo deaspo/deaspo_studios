@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static "images/logo.jpg" %}" />
-    <title>@deaspo studios inc.</title>
+    {% block pageTitle %}
+    <title>deaspo studios inc.</title>
+    {% endblock pageTitle %}
 </head>
 
 <body>
@@ -103,12 +105,12 @@
                     </aside> <!-- main-navigation -->
                     {% block contentsMain %}
                     <div class="content-main">
+                        {% block contentMain %}
                         <div class="row margin-b-30">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="banner-main-home">
                                     <div class="banner-main-home-text">
                                         <div class="heading">
-                                            {% block contentMain %}
                                             <h1>deaspo studios</h1>
                                             <p class="text-uppercase">The Future is now</p>
                                         </div>
@@ -116,18 +118,20 @@
                                             <p><strong>We are an organisation dedicated to building apps didicated to serving each and every one of our client needs. This comes in the form of the <b>Services</b> we offer, which includes <em> web designs, mobile app development, installations, domain registration and hosting..</em></strong></p>
                                             <button type="button" class="">SEE ALL THE SERVICES WE OFFER</button>
                                         </div>
-                                           {% endblock contentMain %}
+
                                     </div>
                                     <!--<img src="{% static 'images/img_home.png' %}" alt="Image" class="img-responsive">-->
                                 </div>
                             </div>
                         </div>
+                        {% endblock contentMain %}
                         {% block subMain %}
                         <div class="row margin-b-30">
                             {% block mainTwoServices %}
 
                             {% endblock mainTwoServices %}
                         </div> <!-- row -->
+                            {% block footText %}
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="box bottom-main">
@@ -144,13 +148,14 @@
                                         <p class="bottom-desc">General description for the our services.... </p><hr />
                                         <div class="col-sm-12 location-main">
                                             <div class="pull-right bottom-user">
-                                                <a href="services"><i class="fa fa-caret-right"></i><span>SEE ALL</span></a>
+                                                <a href="services" target="_blank"><i class="fa fa-caret-right"></i><span>SEE ALL</span></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div> <!-- row -->
+                                {% endblock footText %}
                             {% endblock subMain %}
                     </div> <!-- .content-main -->
                     {% endblock contentsMain %}

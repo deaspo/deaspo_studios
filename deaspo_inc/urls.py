@@ -19,10 +19,14 @@ from django.conf.urls.static import static
 from django.contrib import staticfiles
 from django.contrib import admin
 from deaspo import views
+import services
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
+    url(r'^services/?$', views.services, name='services'),
+    url(r'^service/(\d+)/?$', views.service, name='service'),
+    url(r'^service/(\d+)/(\d+)/order$', views.webOrders, name='order'),
 ]
 
 if settings.DEBUG:

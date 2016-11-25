@@ -1,0 +1,44 @@
+#price {
+	background: #fff;
+	#padding-top: 100px;
+	padding-bottom: 20px;
+}
+#price .plan {
+	background: #eb5424;
+	color: #ffffff;
+	padding: 0 0 10px 0;
+}
+#price .plan .plan_title {
+	background-color: #f6f6f6;
+	color: #202020;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#price .plan .plan_sub_title {
+	border-bottom: 1px solid #ffffff;
+	padding: 5px;
+}
+#price .plan ul {
+	padding: 0;
+}
+#price .plan ul li {
+	display: block;
+	font-family: "Proxima";
+	font-size: 16px;
+	padding: 5px 0 10px 0;
+}
+#price .plan .btn {
+	background: #ffffff;
+	border: none;
+	border-radius: 0;
+	color: #202020;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 5px 5px;
+	transition: all 0.4s ease-in-out;
+	margin-top: 20px;
+}
+#price .plan .btn:hover {
+	background: #202020;
+	color: #ffffff;
+}

@@ -1,0 +1,26 @@
+{% extends "services/index.html" %}
+{% load staticfiles %}
+
+{% block contentMain %}
+    <div class="row margin-b-30">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="banner-main-home">
+                <div class="banner-main-home-text">
+                    <div class="heading">
+                        <h1>{{ service.pname }}</h1>
+                        <p class="text-uppercase">{{ service.pintro }}</p>
+                    </div>
+                    <div class="desc">
+                        <p><strong>{{ service.pshortdesc }} </strong></p>
+                    </div>
+                </div>
+                <img src="{{ service.ppics.url }}" alt="Image" class="img-responsive" width="294">
+            </div>
+        </div>
+    </div>
+{% endblock contentMain %}
+
+
+{% block mainTwoServices %}
+
+{% endblock mainTwoServices %}
