@@ -25,8 +25,7 @@ a:hover {
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #161E2C;
-	font-family: 'Open Sans', sans-serif;
+	background-color: #a5a5a5;
 	overflow-x: hidden;
 }
 
@@ -190,7 +189,8 @@ body {
 }
 .banner-main-home {
 	background-color: white;
-	background-image: url(../images/banner-bg-home.jpg);
+	background-image: url(../images/start.jpg);
+	opacity: 1;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: bottom right;
@@ -245,7 +245,7 @@ body {
 .banner-main-about-text {
 	position: relative;
 	float: left;
-	width: 55%;
+	width: 75%;
 	color: #000;
 	text-align: left;
 	right: 0;
@@ -293,10 +293,19 @@ body {
 	width: 100%;
 	padding-left: 15px;
 }
+.desc {
+	background-color: #ffffff;
+	opacity: 0.7;
+	width: 100%;
+}
+
+.desc:hover{opacity: 1;}
 .desc p {
 	line-height: 1.8;
 	margin-top: 25px;
 	margin-bottom: 30px;
+	color: #000000;
+	font-weight: bold;
 }
 .desc button, .desc2 button {
 	background-color: #363636;
@@ -928,7 +937,7 @@ textarea.form-control {	height:135px; }
 
 	.banner-main-home, .banner-main-about {	padding: 20px; }
 	.banner-main-home-text {
-		width: 92%;
+		width: 100%;
 		float: left;
 		padding-right: 25px;
 	}

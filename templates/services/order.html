@@ -1,0 +1,481 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title_ico %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "images/order.ico" %}" />
+    <title>Order Page</title>
+    {% endblock title_ico %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/order.css' %}">
+
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-webmaster">
+    <div class="container">
+    	<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Back Home</a>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Projects<span class="sr-only">(current)</span></a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+                        {% for service in services %}
+                            <li><a href="{% url 'service' service.id %}">{{ service.pname }}</a></li>
+                        {% endfor %}
+						<li><a href="/services">View all</a></li>
+					</ul>
+				</li>
+			</ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
+                    <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-content">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <img src="{{ picture.url }}"
+                                             alt="Alternate Text" class="img-responsive" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span>{{ fullname }}</span>
+                                        <p class="text-muted small">{{ email }}</p>
+                                        <p class="text-muted small">{{ username }}</p>
+                                        <div class="divider">
+                                        </div>
+                                        <a href="{% url 'profile' %}?next={{ request.path }}" class="btn btn-primary btn-sm active">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-footer">
+                                <div class="navbar-footer-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {% if activate %}
+                                                <a href="{{ next }}" class="btn btn-default btn-sm">Back to Cart</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="/logout" class="btn btn-default btn-sm pull-right">Sign Out</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+		</div>
+	</div>
+</nav>
+{% block contents %}
+<!-- checkout steps -->
+
+<div class="container">
+    <br />
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-8 col-lg-9">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-4">
+                    <div id="cart_bar" class="step active">
+                        <span class="fa fa-shopping-cart"></span>
+                        Cart
+                        <div class="hidden-xs caret right"></div>
+                        <div class="visible-xs caret bottom"></div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <div id="address_bar" class="step">
+                            <span class="fa fa-home"></span>
+                            Address
+                            <div class="hidden-xs caret right"></div>
+                        <div class="visible-xs caret bottom"></div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <div id="review_bar" class="step">
+                            <span class="fa fa-paypal"></span>
+                            Checkout
+                            <div class="hidden-xs caret right"></div>
+                        <div class="visible-xs caret bottom"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="col-xs-12" />
+    </div>
+</div>
+
+ <!-- The items being ordered -->
+
+<div class="container">
+    <div id="cart" style="margin-top: 20px">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+                            <th style="width:15%">Plan</th>
+							<th style="width:7%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:13%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{{ service.ppics.url }}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">{{ service.pname }}</h4>
+										<p>{{ service.pshortdesc }}</p>
+									</div>
+								</div>
+							</td>
+                            <td data-th="Price">{{ splan.pn_name }}</td>
+							<td id="price" data-th="Price">$ {{ splan.pn_yearly }}</td>
+							<td data-th="Quantity">
+								<input min="1" max="1" id="qty" type="number" class="form-control text-center" value="1">
+							</td>
+							<td id="subtotal" data-th="Subtotal" class="text-center">1.99</td>
+							<td class="actions" data-th="">
+								<!--<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+								<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button> -->
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        <button id="next_cart" type="button" class="btn btn-success">
+                            Next <span class="fa fa-caret-right"></span>
+                        </button></td>
+                    </tr>
+                </tfoot>
+				</table>
+            </div>
+        </div>
+    </div>
+    <div id="address" style="margin-top: 20px;display: none;">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <form method="post" action="" id="user_address">
+                    {% csrf_token %}
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="fullnames">Full Name</label>
+                                                <input type="text" class="form-control" id="fullname" value="{{ fullname }}" required >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="company">Company Name</label>
+                                                <input type="text" class="form-control" id="company" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="street">Street</label>
+                                                <input type="text" class="form-control" id="street">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="zip">Zip code</label>
+                                                <input type="text" class="form-control" id="zip">
+                                            </div>
+                                        </div>
+                                       <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="city">City</label>
+                                                <input type="text" class="form-control" id="city" required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="country">Country</label>
+                                                <select class="form-control" id="country">
+                                                    <option value="swiss">Kenya</option>
+                                                    <option value="usa">USA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="phone">Phone number</label>
+                                                <input type="text" class="form-control" id="phone" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="email">E-Mail</label>
+                                                <input type="text" class="form-control" id="email" value="{{ email }}" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+
+                                <div class="box-footer">
+                                    <div class="pull-left">
+                                        <button id="previous_address" type="button" class="btn btn-default"><span class="fa fa-caret-left"></span> Back to cart</button>
+                                    </div>
+                                    <div class="pull-right">
+                                        <!--<input id="next_address" type="submit" class="btn" value="Next" />-->
+                                        <button id="next_address" type="button" class="btn btn-success" >Next<i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="review" style="margin-top: 20px;display: none">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title center-block">Review Your Order</div>
+            </div>
+            <div style="margin-top: 20px;" class="panel-body">
+                <table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+                            <th style="width:15%">Plan</th>
+							<th style="width:7%">Price</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{{ service.ppics.url }}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">{{ service.pname }}</h4>
+										<p>{{ service.pshortdesc }}</p>
+									</div>
+								</div>
+							</td>
+                            <td data-th="Price">{{ splan.pn_name }}</td>
+							<td id="price" data-th="Price">$ {{ splan.pn_yearly }}</td>
+						</tr>
+					</tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><h5>Subtotal</h5></td>
+                        <td id="sub">25</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><h6>Tax</h6></td>
+                        <td id="tax">$ 0.00</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><h3>Total</h3></td>
+                        <td id="total">25</td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <button id="previous_review" type="button" class="btn btn-default">
+                            <span class="fa fa-caret-left"></span> Previous
+                        </button></td>
+                        <td><button id="back_services" type="button" class="btn btn-danger">
+                            <span class="fa fa-shopping-cart"></span> Shop Another Product
+                        </button></td>
+                        <td></td>
+                        <td>
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="HFFZK94CDTPJJ">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form></td>
+                    </tr>
+                    </tfoot>
+                    </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- end of the items being ordered -->
+
+{% endblock contents %}
+<footer class="container-fluid text-center bg-lightgray">
+
+        <div class="copyrights" style="margin-top:25px;">
+            <p>Copyright © 2016 @deaspo studios inc., All Rights Reserved
+                <br>
+                <span>Web Design By: Deaspo Studios</span></p>
+            <p><a href="https://www.linkedin.com/" target="_blank">Linkedin <i class="fa fa-linkedin-square" aria-hidden="true"></i> </a></p>
+        </div>
+</footer>
+
+
+<!-- JavaScript -->
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'services/service/js/bootstrap.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            document.getElementById("subtotal").innerText = document.getElementById("price").innerText;
+            document.getElementById("sub").innerText = document.getElementById("subtotal").innerText;
+            document.getElementById("total").innerText = document.getElementById("sub").innerText;
+
+
+
+            //button clicks
+            $('#back_services').click(function () {
+               location.href = '/services';
+            });
+            //next on cart tab
+            $('#next_cart').click(function () {
+                $('#cart').hide();
+                $('#cart_bar').removeClass("active");
+                $('#address_bar').addClass("active");
+                $('#address').show();
+
+            });
+            //next on address tab
+            $('#next_address').click(function () {
+                $('#address').hide();
+                $('#address_bar').removeClass("active");
+                $('#review_bar').addClass("active");
+                $('#review').show();
+
+            });
+            //previous buttons
+            $('#previous_review').click(function () {
+                $('#review').hide();
+                $('#review_bar').removeClass("active");
+                $('#address_bar').addClass("active");
+                $('#address').show();
+
+            });
+
+            $('#previous_address').click(function () {
+                $('#address').hide();
+                $('#address_bar').removeClass("active");
+                $('#cart_bar').addClass("active");
+                $('#cart').show();
+
+            });
+
+
+            $('#qty').on('keyup change', function () {
+                qty = this.value;
+                var price = document.getElementById("price").innerText.replace("$ ","");
+                var new_price = '$ ' + parseInt(qty,10)*parseInt(price,10) +'.00';
+                document.getElementById("subtotal").innerText = new_price;
+                document.getElementById("sub").innerText = new_price;
+                document.getElementById("total").innerText = new_price;
+            });
+
+            $(function(){
+             function submitState(el) {
+
+                var $form = $(el),
+                    $requiredInputs = $form.find('input:required'),
+                    //$submit = $form.find('button[type="submit"]');
+                    $submit = $('#next_address');
+                $submit.attr('disabled', 'disabled');
+
+                $requiredInputs.keyup(function () {
+
+                  $form.data('empty', 'false');
+
+                  $requiredInputs.each(function() {
+                    if ($(this).val() === '') {
+                      $form.data('empty', 'true');
+                    }
+                  });
+
+                  if ($form.data('empty') === 'true') {
+                    $submit.attr('disabled', 'disabled').attr('title', 'fill in all required fields');
+                  } else {
+                    $submit.removeAttr('disabled').attr('title', 'click to submit');
+                  }
+                });
+              }
+
+              // apply to each form element individually
+                submitState('#user_address');
+              //submitState('#login_user');
+            });
+
+            //form address checks
+            //var required = $('[required]');
+            // bind change for all you just click, and keyup for all textfields
+            /*required.bind('change keyup', function() {
+                var flag = 0;
+                // check every el in collection
+                required.each(function() {
+                    if ($(this).not(':checkbox, :radio').val() || $(this).filter(':checked').val()) flag++;
+                });
+                // if number of nonempty (nonchecked) fields == number of required fields minus one excess radio input
+                if (flag==required.length-1) $('input[type=submit]').prop('disabled',false);
+                else $('input[type=submit]').prop('disabled', true);
+            });*/
+            
+        });
+    </script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+{% extends "base_accounts.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title">Sign Up</div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="{% url 'login' %}"">Sign In</a></div>
+        </div>
+        <div class="panel-body" >
+            <form id="signupform" class="form-row" role="form" enctype="multipart/form-data" action="" method="post">
+                {% csrf_token %}
+
+                <div id="signupalert" style="display:none" class="alert alert-danger">
+                    <p>Error:</p>
+                    <span></span>
+                </div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    {{ form.username }}
+                    <script>
+                        var elem = document.getElementById("{{ form.username.id_for_label }}");
+                        elem.classList.add("form-control");
+                        elem.setAttribute('placeholder','username');
+                    </script>
+                    {% if form.username.errors %}
+                        <small class="error">{{ form.username.errors }}
+                    {% endif %}
+                </div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                    {{ form.email }}
+                    <script>
+                        var elem = document.getElementById("{{ form.email.id_for_label }}");
+                        elem.classList.add("form-control");
+                        elem.setAttribute('placeholder','your email address');
+                    </script>
+                    {% if form.email.errors %}
+                        <small class="error">{{ form.username.errors }}
+                    {% endif %}
+                </div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    {{ form.password1 }}
+                    <script>
+                        var elem = document.getElementById("{{ form.password1.id_for_label }}");
+                        elem.classList.add("form-control");
+                        elem.setAttribute('placeholder','password');
+                    </script>
+                    {% if form.password1.errors %}
+                        <small class="error">{{ form.password1.errors }}
+                    {% endif %}
+                </div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    {{ form.password2 }}
+                    <script>
+                        var elem = document.getElementById("{{ form.password2.id_for_label }}");
+                        elem.classList.add("form-control");
+                        elem.setAttribute('placeholder','confirm password');
+                    </script>
+                    {% if form.password2.errors %}
+                        <small class="error">{{ form.password2.errors }}
+                    {% endif %}
+                </div>
+                <input type="hidden" name="next" id="id_next" value="{{ request.REQUEST.next }}" />
+
+                <div class="form-group">
+                    <!-- Button -->
+                    <div class="col-md-offset-3 col-md-9">
+                        <input id="btn-signup" class="btn btn-info" type="submit" value="{% trans 'Submit' %}" />
+                        <!--<button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>-->
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

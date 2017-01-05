@@ -16,7 +16,7 @@
                      <p>{{ serv.pshortdesc }}</p><hr />
                      <div class="col-sm-12 location-main">
                          <div class="pull-left location">
-                             <i class="fa fa-caret-right"></i><span><a href="#">Details</a> </span>
+                             <i class="fa fa-caret-right"></i><span><a href="{% url 'service' serv.id %}">Details</a> </span>
                          </div>
                          <div class="pull-right user-icons">
                              <a href="#"><i class="fa fa-star fa-2x"></i></a>
@@ -33,10 +33,10 @@
 
 {% block serviceImages %}
     {% for serv in servThree %}
-        <div style="min-height: 200px;" class="col-xxs-12 col-xs-6 col-sm-6 col-md-4 col-lg-4">
-            <div class="bottom-img">
+        <div class="col-xxs-12 col-xs-6 col-sm-6 col-md-4 col-lg-4">
+            <div style="min-height: 250px; border: 1px solid black;" class="bottom-img">
                 <img src="{{ serv.ppics.url }}" alt="{{ serv.pintro }}">
-                <p class="first">{{ serv.pname }}</p>
+                <p class="first text-center"><a style="color: white;" href="{% url 'service' serv.id %}">{{ serv.pname }}</a> </p>
             </div>
         </div>
     {% endfor %}

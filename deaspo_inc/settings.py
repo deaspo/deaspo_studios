@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import socket
+socket.getaddrinfo('localhost', 8080)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
     'deaspo',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +54,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'deaspo_inc.urls'
+ACCOUNT_ACTIVATION_DAYS = 7
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smpt.gmail.com'
+EMAIL_HOST_USER = 'aspoboy@gmail.com'
+EMAIL_HOST_PASSWORD = 'ousridappoxpkwfb'
+SERVER_EMAIL = 'aspoboy@gmail.com'
+DEFAULT_FROM_EMAIL = 'Polycarp'
 
 TEMPLATES = [
     {
