@@ -78,7 +78,7 @@ def service(request, service_id):
     return render(request, 'services/service.html', {'form':form,'cform':cform,'service': service})
 
 @login_required
-def webOrders(request, service_id, plan_id):
+def order(request, service_id, plan_id):
     products = Product.objects.all()  # returns all the products and services
     eplans = EmailPlan.objects.all()
     service =  get_object_or_404(Product, pk=service_id)
@@ -220,6 +220,17 @@ def del_user(request, user_id):
     except Exception as e:
         return render(request, 'users/profile.html',{'err':e.message})
 
+def projects(request):
+    projects = Project.objects.all()
+    return render(request,'projects/projects.html',{'projects':projects})
+
+
+def project(request, proj_id):
+    project = get_object_or_404(Project, pk=proj_id)
+    return render(request,'projects/project.html',{'project':project})
+
 def about(request):
-    staff = Staff.objects.all()
-    return render(request,'about/about.html',{'staffs':staff})
+    staffs = Staff.objects.all()
+    products = Product.objects.all()
+    projects = Project.objects.all()
+    return render(request,'about/about.html',{'staffs':staffs,'services':products,'projects':projects})

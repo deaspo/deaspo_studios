@@ -197,7 +197,7 @@ class Social(models.Model):
         ('D', 'Google Plus'),
     )
     category = models.CharField(choices=platform, default="Facebook", max_length=50)
-    link = models.URLField(name='Link to profile')
+    link = models.URLField(name='Link to profile',blank=True)
     s_class = models.CharField(max_length=100, default="wow fadeInDown")
 
     def save(self, *args, **kwargs):
@@ -243,7 +243,34 @@ class Staff(models.Model):
     social = models.ForeignKey(Social, blank=True)
     joined = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        if self.pic:
+            img = Img.open(StringIO.StringIO(self.pic.read()))
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            (width, height) = (self.pic.width, self.pic.height)
+            (width, height) = scale_dimensions(width,height,longest_side=500)
+            img.thumbnail((width, height), Img.ANTIALIAS)
+            output = StringIO.StringIO()
+            img.save(output, format='JPEG', quality=90)
+            output.seek(0)
+
+            self.pic = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.pic.name.split('.')[0],
+                                            'image/jpeg', output.len, None)
+        super(Staff, self).save(*args,**kwargs)
+
 
 
     def __str__(self):
         return '%s /n Position: %s' % (self.name, self.position)
+
+
+def scale_dimensions(width, height, longest_side):
+    if width > height:
+        if width > longest_side:
+            ratio = longest_side * 1. / width
+            return (int(width * ratio), int(height * ratio))
+        elif height > longest_side:
+            ratio = longest_side * 1. / height
+            return (int(width * ratio), int(height * ratio))
+    return (width, height)

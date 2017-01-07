@@ -34,30 +34,21 @@
             <ul class="nav navbar-nav navbar-right">
    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Sub Menu1</a></li>
-              <li><a href="#">Sub Menu2</a></li>
-              <li><a href="#">Sub Menu3</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Sub Menu4</a></li>
-              <li><a href="#">Sub Menu5</a></li>
+             {% for service in services %}
+                 <li><a href="{% url 'service' service.id %}">{{ service.pname }}</a></li>
+             {% endfor %}
          </ul>
    </li>
    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects
        <b class="caret"></b></a>
        <ul class="dropdown-menu" role="menu">
-           <li><a href="#">Sub Menu3</a></li>
-           <li class="divider"></li>
-           <li><a href="#">Sub Menu4</a></li>
-           <li><a href="#">Sub Menu3</a></li>
-           <li class="divider"></li>
-           <li><a href="#">Sub Menu4</a></li>
-           <li><a href="#">Sub Menu3</a></li>
-           <li class="divider"></li>
-           <li><a href="#">Sub Menu4</a></li>
+           {% for project in projects %}
+                <li><a href="{% url 'project' project.id %}">{{ project.name }}</a></li>
+                <li class="divider"></li>
+           {% endfor %}
        </ul>
    </li>
   </ul>
-
         </div>
     </div>
 </nav>
@@ -68,80 +59,65 @@
                     <p class="pull-right visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
-                    <div class="jumbotron text-center">
+                    <div style="background-color: #0275d8;" class="jumbotron text-center">
                         <h1>Meet Deaspo Studios Inc.</h1>
                         <p> We are passionate about our work, the services that we offer and more importantly our customers satisfaction.</p>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                        </div><!--/.col-xs-6.col-lg-4-->
-                        <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                        </div><!--/.col-xs-6.col-lg-4-->
-                        <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                        </div><!--/.col-xs-6.col-lg-4-->
-
+                        {% for staff in staffs %}
+                            <div style="padding-bottom: 15px;" class="col-xs-6 col-lg-4 wow fadeIn text-center" data-wow-delay="0.9s">
+                                <img style="display: block; width: 100%; min-height: 300px;max-height: 300px;" src="{{ staff.pic.url }}" class="img-responsive" alt="{{ staff.name }}">
+                                <h3>{{ staff.name }}</h3>
+                                <h4>{{ staff.get_position_display }}</h4>
+                            </div>
+                        {% endfor %}
                     </div><!--/row-->
-                    <div class="jumbotron">
-                        <h1 class="text-center">Our Core values</h1>
-                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                    <div style="background-color: #d9534f;" class="jumbotron text-center">
+                        <h1>Our Core values</h1>
+                        <p>We strive that we always mirror what our customers stand for.</p>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+                            <h2>Simplicity</h2>
+                            <p>To provide our customers with simple solution and elegant to their needs. </p>
                         </div><!--/.col-xs-6.col-lg-4-->
                         <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+                            <h2>Respect</h2>
+                            <p>Respect everything about our customers. </p>
                         </div><!--/.col-xs-6.col-lg-4-->
                         <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+                            <h2>Attentive</h2>
+                            <p>To everything our customers ask for, we are always listening. </p>
+                        </div><!--/.col-xs-6.col-lg-4-->
+                        <div class="col-xs-6 col-lg-4">
+                            <h2>Trust Worthy</h2>
+                            <p>Your secrets are our secrets, we never fail. </p>
+                        </div><!--/.col-xs-6.col-lg-4-->
+                        <div class="col-xs-6 col-lg-4">
+                            <h2>Supportive Community</h2>
+                            <p>You can always find the help you need, with a diverse team rest asssured we will always be there. </p>
+                        </div><!--/.col-xs-6.col-lg-4-->
+                        <div class="col-xs-6 col-lg-4">
+                            <h2>Love</h2>
+                            <p>We would not be here if it was not for the love you showed us. WE LOVE YOU TOO. </p>
                         </div><!--/.col-xs-6.col-lg-4-->
                     </div>
-                    <div class="jumbotron">
+                    <div style="background-color: #5cb85c;" class="jumbotron">
                         <h1 class="text-center">Our Investors</h1>
-                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                        </div><!--/.col-xs-6.col-lg-4-->
-                        <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                        </div><!--/.col-xs-6.col-lg-4-->
-                        <div class="col-xs-6 col-lg-4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-                        </div><!--/.col-xs-6.col-lg-4-->
+
                     </div>
                 </div><!--/.col-xs-12.col-sm-9-->
 
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
                     <h3>Quick Links</h3>
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
-                        <a href="#" class="list-group-item">Link</a>
+                        <a href="#" class="list-group-item active"> <i class=" fa fa-linkedin"></i> Linkedin Profile</a>
+                        <a href="#" class="list-group-item"> <i class=" fa fa-facebook"></i> Facebook Page</a>
+                        <a href="#" class="list-group-item"> <i class=" fa fa-twitter"></i> Tweet Us</a>
+                        <a href="#" class="list-group-item"> <i class=" fa fa-youtube"></i> YouTube Channel</a>
+                        <a href="https://github.com/deaspostudios   " class="list-group-item"> <i class=" fa fa-github-square"></i> Github Page</a>
                     </div>
  </div>
 </div>
@@ -204,8 +180,8 @@
                     <ul class="social">
                         <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-pinterest">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-linkedin">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-github-square">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
                     </ul>
                 </div>
@@ -219,7 +195,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left"> Copyright © Footer 2014. All right reserved. </p>
+                <p class="copyright pull-left"> <strong>Copyright © 2016 Deaspo Studios Inc.</strong></p>
                 <div class="pull-right">
                     <ul style="margin-right: 35px;" class="nav nav-pills payments">
                         <li><i class="fa fa-cc-visa"></i></li>
