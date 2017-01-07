@@ -1,0 +1,398 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">-->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_fixed.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/panel_home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/panel_img.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/heading_text.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/left_right_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block addStyles %}
+    {% endblock addStyles %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "images/logo.jpg" %}" />
+    <title>{% block pageTitle %}Deaspo Studios Inc.{% endblock pageTitle %}</title>
+    <title>Title</title>
+</head>
+<body>
+<!-- beginning of navigation bar -->
+<nav class="navbar navbar-fixed-top navbar-webmaster">
+    <div class="container">
+    	<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Deaspo Studios Inc.</a>
+		</div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
+                     <ul class="dropdown-menu" role="menu">
+                         {% for service in services %}
+                             <li><a href="{% url 'service' service.id %}">{{ service.pname }}</a></li>
+                         {% endfor %}
+                     </ul>
+               </li>
+               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects
+                   <b class="caret"></b></a>
+                   <ul class="dropdown-menu" role="menu">
+                       {% for project in projects %}
+                            <li><a href="{% url 'project' project.id %}">{{ project.name }}</a></li>
+                            <li class="divider"></li>
+                       {% endfor %}
+                   </ul>
+               </li>
+                <li><a href="{% url 'about' %}">About<span class="sr-only">(current)</span></a> </li>
+                <li><a href="#contactForm" data-toggle="modal" data-target="#contactForm" data-backdrop="static" data-keyboard="false" class="main-menu-link contact block-keep-ratio__content flexbox-center">Contact us<span class="sr-only">(current)</span></a> </li>
+              </ul>
+        </div>
+    </div>
+</nav>
+<!-- end of navigation bar -->
+
+<<!-- beginning of organisation motto -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="jumbotron text-center">
+            <p><strong>We are an organisation dedicated to building apps serving each and every one of our client needs. This comes in the form of the <b>Services</b> that we offer, which includes <em> websites designs and development, mobile and desktop applicationss development, installations, domain name registration, hosting and cloud services.</em></strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of organisation motto-->
+<!-- beginning of left and right ssidebars -->
+<div class="container">
+    <div class="row">
+
+        <marquee behavior="alternate"><h1>{% block pageHead %}The services that we offer {% endblock pageHead %}</h1></marquee>
+
+        <!-- beginning of the services section -->
+            {% block pageContent %}
+            {% for service in services %}
+                {% if forloop.counter < half %}
+                    <div style="margin-bottom: 30px;" class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading clickable">
+                                <h3 class="panel-title"> {{ service.pname }}</h3>
+                                <span class="pull-right">Click to read more <i class="fa fa-minus"></i></span>
+                            </div>
+                            <div style="color: #0b0b0b" class="panel-body">
+                                <div style="background-image: url({{ service.ppics.url }});background-size: 100% 100%;" class="pn col-lg-6">
+                                </div>
+                                <div class="col-sm-12 london-title">
+                                     <h3 class="text-uppercase">{{ service.pname }}</h3>
+                                     <h4 class="text-uppercase">{{ service.pintro }}</h4>
+                                 </div>
+                                <div style="padding-left: 5px;" class="short">
+                                    {{ service.pshortdesc }}
+                                </div>
+                            </div>
+                            <div class="panel-footer first pull-left">
+                                <span><a href="{% url 'service' service.id %}">Visit the service page to find all available options</a> </span>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div style="margin-bottom: 30px;" class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading clickable">
+                                <h3 class="panel-title"> {{ service.pname }}</h3>
+                                <span class="pull-right">Click to read more <i class="fa fa-minus"></i></span>
+                            </div>
+                            <div style="color: #0b0b0b" class="panel-body">
+                                <div style="background-image: url({{ service.ppics.url }});background-size: 100% 100%;" class="pn col-lg-6">
+                                </div>
+                                <div class="col-sm-12 london-title">
+                                     <h3 class="text-uppercase">{{ service.pname }}</h3>
+                                     <h4 class="text-uppercase">{{ service.pintro }}</h4>
+                                 </div>
+                                <div style="padding-left: 5px;" class="short">
+                                    {{ service.pshortdesc }}
+                                </div>
+                            </div>
+                            <div class="panel-footer first pull-left">
+                                <span><a href="{% url 'service' service.id %}">Visit the service page to find all available options</a> </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+
+            {% endblock pageContent %}
+        <!-- end of the services section -->
+        <!--<p class="text-muted">First of all thanks to: <a href="http://bootsnipp.com/gesper999"><small>Left Sideways Panel Header</small></a></p>-->
+        <div id="leftSLideBar" class="hidden-xs hidden-sm">
+            <div class="panel panel-default">
+                <div class="panel-leftheading">
+                    <h3 class="panel-lefttitle">Connect with us Socially</h3>
+                </div>
+                <div class="panel-rightbody">
+                    <div>
+                        <i class="fa fa-facebook-square"></i>
+                        <p><a href="">Facebook <br>Page</a></p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-twitter-square"></i>
+                        <p><a href="#">Twiiter <br>Page</a></p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-linkedin-square"></i>
+                        <p><a href="#">Linkedin <br>Profile</a></p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-github-square"></i>
+                        <p><a href="#">Githube <br>Page</a></p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-youtube-square"></i>
+                        <p><a href="#">Youtube <br>Channel</a></p>
+                    </div>
+
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+
+        <div id="rightSLideBar" class="hidden-xs hidden-sm">
+            <div class="panel panel-default">
+                <div class="panel-leftheading">
+                    <h3 class="panel-lefttitle"><i class="fa fa-mobile"></i> Talk to us<br> mobile contacts</h3>
+                </div>
+                <div class="panel-rightbody">
+                    <div>
+                        <img src="http://spectr-forum.com/images/eventlook-u14310.png" alt="">
+                    </div>
+                    <div>
+                        <h4>Need help? Call our always there for you support team</h4>
+                        <p>Find answers to commonly asked questions has never been easy</p>
+                    </div>
+
+                    <div id="botcell">
+                        <div>
+                            <i class="fa fa-mobile-phone"></i>
+                            <p>+254734544704</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-square"></i>
+                            <p>info@deaspostudios.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of left and right sidebars -->
+
+<!-- beginning of modal form for contact -->
+
+            <div class="container">
+                <div id="contactForm" class="modal fade" >
+                    <div style="width: 800px;" class="modal-dialog" >
+                        <div style="width: 100%;margin: auto;" class="modal-content">
+                            <div class="modal-header">
+                                <div class="page-header">
+                                    <h1 class="text-center">Contact Us</h1>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="well">Have a question or comment? Fill out the following information and we will get back to you as soon as possible.</div>
+                                    <form class="form-horizontal" method="post" role="form" >
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="email" class="col-sm-2 control-label">E-mail</label>
+                                            <div class="col-sm-6">
+                                                {{ cform.cl_email }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Name</label>
+                                            <div class="col-sm-6">
+                                                {{ cform.cl_name }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Message</label>
+                                            <div class="col-sm-8">
+                                                {{ cform.cl_message }}
+                                            </div>
+                                        </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-6">
+                                                <button type="submit" class="btn btn-primary">Send Message</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                    </div>
+                                    </form>
+                            </div>
+                            </div>
+
+                    </div>
+
+                </div>
+        </div>
+
+
+<!-- end of modal for contact form -->
+
+
+
+    <!--footer start from here-->
+<footer>
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About </a> </li>
+                        <li> <a href="#"> Blog </a> </li>
+                        <li> <a href="#"> Careers </a> </li>
+                        <li> <a href="#"> Legal </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Products </h3>
+                    <ul>
+                        <li> <a href="#"> Web Design </a> </li>
+                        <li> <a href="#"> Development </a> </li>
+                        <li> <a href="#"> Mobile Applications </a> </li>
+                        <li> <a href="#"> Desktop Applications </a> </li>
+                        <li> <a href="#"> Hosting</a> </li>
+                        <li> <a href="#"> Cloud </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Projects </h3>
+                    <ul>
+                        <li> <a href="#"> Websites </a> </li>
+                        <li> <a href="#"> Mobile </a> </li>
+                        <li> <a href="#"> Desktops </a> </li>
+                        <li> <a href="#"> Concepts </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Support </h3>
+                    <ul>
+                        <li> <a href="#"> Help </a> </li>
+                        <li> <a href="#"> Contact Support </a> </li>
+                        <li> <a href="#"> Tutorials </a> </li>
+                        <li> <a href="#"> Referral Progrsm </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social links </h3>
+                    <ul>
+                        <li>
+                            <div class="input-append newsletter-box text-center">
+                                <input type="text" class="full text-center" placeholder="Email to subscribe to our newsletters ">
+                                <button class="btn  bg-gray" type="button"> Subscribe </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-linkedin">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-github-square">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </div>
+    <!--/.footer-->
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="copyright pull-left"> <strong>Copyright &copy; 2016<script>new Date().getFullYear()>2016&&document.write("-"+new Date().getFullYear());</script> Deaspo Studios Inc.</strong></p>
+                <div class="pull-right">
+                    <ul style="margin-right: 35px;" class="nav nav-pills payments">
+                        <li><i class="fa fa-cc-visa"></i></li>
+                        <li><i class="fa fa-cc-mastercard"></i></li>
+                        <li><i class="fa fa-cc-paypal"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.footer-bottom-->
+</footer>
+<!-- end footer -->
+
+
+
+<!-- JavaScript -->
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script>
+
+    </script>
+    <script>
+        $(document).on('click', '.panel-heading span.clickable', function (e) {
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.short').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('fa-minus').addClass('fa-plus');
+            } else {
+                $this.parents('.panel').find('.short').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('fa-plus').addClass('fa-minus');
+            }
+        });
+        $(document).on('click', '.panel div.clickable', function (e) {
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.short').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('fa-minus').addClass('fa-plus');
+            } else {
+                $this.parents('.panel').find('.short').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('fa-plus').addClass('fa-minus');
+            }
+        });
+        $(document).ready(function () {
+            $('.panel-heading span.clickable').click();
+            $('.panel div.clickable').click();
+            var n = new Date();
+            year = n.getFullYear();
+
+        });
+    </script>
+{% block addScripts %}
+
+{% endblock addScripts %}
+
+</body>
+</html>

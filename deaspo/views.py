@@ -24,19 +24,19 @@ class RegisterView(RegistrationView):
             print str(e)
             pass
 
-def index(request):
-    if request.POST:
-        cform = ContactForm(request.POST)
-        if cform.is_valid():
-            cform.save()
-            return HttpResponseRedirect('/')
-    else:
-        cform = ContactForm()
-    products = Product.objects.all() #returns all the products and services
-    #pintro = Product.objects.filter(Q(category__exact='Web')| Q(category__exact='Mobile'))
-    pintro = Product.objects.filter(pmain=True)[:2][::1]
-    pcont = Product.objects.filter(pmain=False)[:3][::1]
-    return render(request, "home/index.html", {'services':products, 'servTwo':pintro, 'servThree':pcont,'cform':cform})
+#def index(request):
+ #   if request.POST:
+ #       cform = ContactForm(request.POST)
+ #       if cform.is_valid():
+ #           cform.save()
+ #           return HttpResponseRedirect('/')
+ #   else:
+ #       cform = ContactForm()
+ #   products = Product.objects.all() #returns all the products and services
+ #   #pintro = Product.objects.filter(Q(category__exact='Web')| Q(category__exact='Mobile'))
+ #   pintro = Product.objects.filter(pmain=True)[:2][::1]
+ #   pcont = Product.objects.filter(pmain=False)[:3][::1]
+ #   return render(request, "home/index.html", {'services':products, 'servTwo':pintro, 'servThree':pcont,'cform':cform})
 
 
 def services(request):
@@ -234,3 +234,18 @@ def about(request):
     products = Product.objects.all()
     projects = Project.objects.all()
     return render(request,'about/about.html',{'staffs':staffs,'services':products,'projects':projects})
+
+
+def index(request):
+    if request.POST:
+        cform = ContactForm(request.POST)
+        if cform.is_valid():
+            cform.save()
+            return HttpResponseRedirect('/')
+    else:
+        cform = ContactForm()
+    products = Product.objects.all() #returns all the products and services
+    half_preducts = (len(products)+1)/2
+    #half_preducts = (products.count()+1)/2
+    projects = Project.objects.all()#return all the projects
+    return render(request, "base.html", {'services':products, 'projects':projects, 'cform':cform, 'half':half_preducts})

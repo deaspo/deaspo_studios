@@ -1,33 +1,14 @@
-{% extends "services/index.html" %}
+{% extends "base.html" %}
 {% load staticfiles %}
 {% block addStyles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/service_page.css' %}">
     <!--<link rel="stylesheet" href="{% static 'services/service/css/templatemo_style.css' %}">-->
     <link rel="stylesheet" href="{% static 'services/service/css/custom.css' %}">
 {% endblock addStyles %}
+{% block pageTitle %} {{ service.pname }} {% endblock pageTitle %}
+{% block pageHead %} {{ service.pintro }} {% endblock %}
 
-
-{% block contentMain %}
-    <div class="row margin-b-30">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="banner-main-home">
-                <div class="banner-main-home-text">
-                    <div class="heading">
-                        <h1>Deaspo Studios</h1>
-                        <p style="color: white;font-style: italic;" class="text-uppercase">The Future is now</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock contentMain %}
-
-
-{% block mainTwoServices %}
-
-{% endblock mainTwoServices %}
-
-{% block footText %}
+{% block pageContent %}
     <div class="row margin-b-30">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="box bottom-main">
@@ -242,7 +223,7 @@
             </div>
         </div>
     </div> <!-- row -->
-{% endblock footText %}
+{% endblock pageContent %}
 
 {% block addScripts %}
     <script src="{% static 'services/service/js/custom.js' %}"></script>
