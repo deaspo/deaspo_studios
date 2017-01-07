@@ -74,12 +74,16 @@ def service(request, service_id):
     else:
         form = CommentForm()
         cform = ContactForm()
-
-    return render(request, 'services/service.html', {'form':form,'cform':cform,'service': service})
+    products = Product.objects.all()  # returns all the products and services
+    half_preducts = (len(products) + 1) / 2
+    # half_preducts = (products.count()+1)/2
+    projects = Project.objects.all()  # return all the projects
+    return render(request, 'services/service.html', {'form':form,'cform':cform,'service': service,'services':products, 'projects':projects,'half':half_preducts})
 
 @login_required
 def order(request, service_id, plan_id):
     products = Product.objects.all()  # returns all the products and services
+    projects = Project.objects.all()  # return all the projects
     eplans = EmailPlan.objects.all()
     service =  get_object_or_404(Product, pk=service_id)
     splan = get_object_or_404(Plan, pk=plan_id)
@@ -91,7 +95,7 @@ def order(request, service_id, plan_id):
     else:
         form = WebOrderForm(request.POST)
         form.hosting_plan = splan.pn_name
-    return render(request,'services/order.html',{'activate':activate,'eplans':eplans,'service':service,'splan':splan,'form':form,'services':products,'email':request.user.email,'fullname':request.user.get_full_name(),'username':request.user.username,'picture':request.user.profile.picture})
+    return render(request,'services/order.html',{'activate':activate,'eplans':eplans,'service':service,'splan':splan,'form':form,'services':products,'projects':projects,'email':request.user.email,'fullname':request.user.get_full_name(),'username':request.user.username,'picture':request.user.profile.picture})
 
 
 def selfCheck(request, service_id, plan_id):

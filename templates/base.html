@@ -63,19 +63,16 @@
 <!-- end of navigation bar -->
 
 <<!-- beginning of organisation motto -->
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12">
-            <div class="jumbotron text-center">
-            <p><strong>We are an organisation dedicated to building apps serving each and every one of our client needs. This comes in the form of the <b>Services</b> that we offer, which includes <em> websites designs and development, mobile and desktop applicationss development, installations, domain name registration, hosting and cloud services.</em></strong></p>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!--end of organisation motto-->
-<!-- beginning of left and right ssidebars -->
+<!-- beginning of left and right sidebars -->
 <div class="container">
-    <div class="row">
+    <div style="margin-top: 50px;" class="row">
+
+            <div class="jumbotron text-center">
+                <p><strong>We are an organisation dedicated to building apps serving each and every one of our client needs. This comes in the form of the <b>Services</b> that we offer, which includes <em> websites designs and development, mobile and desktop applicationss development, installations, domain name registration, hosting and cloud services.</em></strong></p>
+            </div>
+
 
         <marquee behavior="alternate"><h1>{% block pageHead %}The services that we offer {% endblock pageHead %}</h1></marquee>
 
@@ -83,11 +80,11 @@
             {% block pageContent %}
             {% for service in services %}
                 {% if forloop.counter < half %}
-                    <div style="margin-bottom: 30px;" class="col-md-6">
+                    <div style="margin-bottom: 30px;" class="col-xs-12 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading clickable">
-                                <h3 class="panel-title"> {{ service.pname }}</h3>
-                                <span class="pull-right">Click to read more <i class="fa fa-minus"></i></span>
+                                <h3> {{ service.pname }}</h3><br>
+                                <span class="pull-right">read more about it <i class="fa fa-minus"></i></span>
                             </div>
                             <div style="color: #0b0b0b" class="panel-body">
                                 <div style="background-image: url({{ service.ppics.url }});background-size: 100% 100%;" class="pn col-lg-6">
@@ -106,11 +103,11 @@
                         </div>
                     </div>
                 {% else %}
-                    <div style="margin-bottom: 30px;" class="col-md-6">
+                    <div style="margin-bottom: 30px;" class="col-xs-12 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading clickable">
-                                <h3 class="panel-title"> {{ service.pname }}</h3>
-                                <span class="pull-right">Click to read more <i class="fa fa-minus"></i></span>
+                                <h3> {{ service.pname }}</h3><br>
+                                <span class="pull-right">read more about it <i class="fa fa-minus"></i></span>
                             </div>
                             <div style="color: #0b0b0b" class="panel-body">
                                 <div style="background-image: url({{ service.ppics.url }});background-size: 100% 100%;" class="pn col-lg-6">
