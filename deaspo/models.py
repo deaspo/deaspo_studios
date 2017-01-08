@@ -29,7 +29,7 @@ class Contact(models.Model):
 
 class Plan(models.Model):
     pn_name = models.CharField(max_length=50,unique=True)
-    pn_yearly = models.DecimalField(decimal_places=2,max_digits = 5,default=5)
+    pn_yearly = models.DecimalField(decimal_places=2,max_digits = 7,default=25000)
     pn_ssd =models.IntegerField(default=20, name='SSD')
     pn_transfer = models.IntegerField(default=1, name='Transers')
     pn_ram = models.IntegerField(default=512,name='Ram')
@@ -91,7 +91,7 @@ def path_file_name(instance, filename):
 class Product(models.Model):
     pname= models.CharField(max_length=100, unique=True, default='Product')
     ppics = models.ImageField(upload_to=path_file_name, default='products/default.jpg')
-    pintro = models.CharField(max_length=50, default='Brief intro')
+    pintro = models.CharField(max_length=200, default='Brief intro')
     pshortdesc = models.CharField(max_length=500, default='Short description')
     pdesc = models.TextField(max_length=3000, default='Product description')
     prel = models.ManyToManyField("self", blank=True)
@@ -274,3 +274,27 @@ def scale_dimensions(width, height, longest_side):
             ratio = longest_side * 1. / height
             return (int(width * ratio), int(height * ratio))
     return (width, height)
+
+class OrderAddress(models.Model):
+    hosting_plan = models.CharField(max_length=100)
+    hosting_plan_price = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7)
+    fname = models.CharField(max_length=100)
+    cname = models.CharField(max_length=100)
+    sname = models.CharField(max_length=100)
+    zcode = models.IntegerField(validators=[MinLengthValidator(limit_value=5,message="Enter the correct code"),MaxLengthValidator(limit_value=5,message="Enter the correct code"),MinValueValidator(limit_value=00000,message="Cannot be negative")])
+    city = models.CharField(max_length=100)
+    choices = (('A', 'Kenya'),
+               ('B', 'Others'),)
+    country = models.CharField(max_length=100, choices=choices, default="Kenya")
+    pnumber = models.IntegerField(validators=[MinLengthValidator(limit_value=10,message="Enter the correct code"),MaxLengthValidator(limit_value=10,message="Enter the correct code"),MinValueValidator(limit_value=0000000000,message="Cannot be negative")])
+    email = models.EmailField(validators=[EmailValidator(message="Invalid email address")])
+    dname = models.BooleanField(default=True)
+    edomain = models.BooleanField(default=False)
+    app = models.BooleanField(default=False)
+    dprice = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7,default=2500)
+    eprice = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7,default=12000)
+    aprice = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7,default=7500)
+
+choices = (('A','Kenya'),
+               ('B','Others'),)
+

@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
 from deaspo.models import Product, Project, ProductWebOrder, EmailPlan, Plan, UserNext, Staff
-from deaspo.forms import WebOrderForm, UserForm, CommentForm, ContactForm
+from deaspo.forms import WebOrderForm, UserForm, CommentForm, ContactForm, AddressOrderForm
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -87,15 +87,25 @@ def order(request, service_id, plan_id):
     eplans = EmailPlan.objects.all()
     service =  get_object_or_404(Product, pk=service_id)
     splan = get_object_or_404(Plan, pk=plan_id)
-    activate = False
     if not request.POST:
-        form = WebOrderForm()
-        form.total_price = splan.pn_yearly
-
+        #form = WebOrderForm()
+        #form.total_price = splan.pn_yearly
+        form = AddressOrderForm()
     else:
-        form = WebOrderForm(request.POST)
-        form.hosting_plan = splan.pn_name
-    return render(request,'services/order.html',{'activate':activate,'eplans':eplans,'service':service,'splan':splan,'form':form,'services':products,'projects':projects,'email':request.user.email,'fullname':request.user.get_full_name(),'username':request.user.username,'picture':request.user.profile.picture})
+        form = AddressOrderForm(request.POST)
+        if form.is_valid():
+            form.hosting_plan = splan.pn_name
+            form.hosting_plan_price = splan.pn_yearly
+            if not request.POST['dname']:
+                form.dprice = 0.00
+            if not request.POST['edomain']:
+                form.eprice = 0.00
+            if not request.POST['app']:
+                form.aprice = 0.00
+            form.save()
+            return HttpResponseRedirect('/')
+
+    return render(request,'services/order.html',{'eplans':eplans,'service':service,'splan':splan,'form':form,'services':products,'projects':projects,'email':request.user.email,'fullname':request.user.get_full_name(),'username':request.user.username,'picture':request.user.profile.picture})
 
 
 def selfCheck(request, service_id, plan_id):

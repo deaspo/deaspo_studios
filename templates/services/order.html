@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/order.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 
 </head>
 <body>
@@ -166,7 +167,7 @@
 								</div>
 							</td>
                             <td data-th="Price">{{ splan.pn_name }}</td>
-							<td id="price" data-th="Price">$ {{ splan.pn_yearly }}</td>
+							<td id="price" data-th="Price">Kshs {{ splan.pn_yearly }}</td>
 							<td data-th="Quantity">
 								<input min="1" max="1" id="qty" type="number" class="form-control text-center" value="1">
 							</td>
@@ -203,8 +204,11 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="fullnames">Full Name</label>
-                                                <input type="text" class="form-control" id="fullname" value="{{ fullname }}" required >
+                                                <label for="{{ form.fname.id_for_label }}">Full Name</label>
+                                                {{ form.fname }}
+                                                {% if form.fname.errors %}
+                                                    <small class="error">{{ form.fname.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -212,14 +216,20 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="company">Company Name</label>
-                                                <input type="text" class="form-control" id="company" required>
+                                                <label for="{{ form.cname.id_for_label }}">Company Name</label>
+                                                {{ form.cname }}
+                                                {% if form.cname.errors %}
+                                                    <small class="error">{{ form.cname.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-sm-4">
                                             <div class="form-group">
-                                                <label for="street">Street</label>
-                                                <input type="text" class="form-control" id="street">
+                                                <label for="{{ form.sname.id_for_label }}">Street</label>
+                                                {{ form.sname }}
+                                                {% if form.sname.errors %}
+                                                    <small class="error">{{ form.sname.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
 
@@ -229,38 +239,50 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-md-2">
                                             <div class="form-group">
-                                                <label for="zip">Zip code</label>
-                                                <input type="text" class="form-control" id="zip">
+                                                <label for="{{ form.zcode.id_for_label }}">Zip code</label>
+                                                {{ form.zcode }}
+                                                {% if form.zcode.errors %}
+                                                    <small class="error">{{ form.zcode.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
                                        <div class="col-sm-6 col-md-4">
                                             <div class="form-group">
-                                                <label for="city">City</label>
-                                                <input type="text" class="form-control" id="city" required>
+                                                <label for="{{ form.city.id_for_label }}">City</label>
+                                                {{ form.city }}
+                                                {% if form.city.errors %}
+                                                    <small class="error">{{ form.city.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
 
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="country">Country</label>
-                                                <select class="form-control" id="country">
-                                                    <option value="swiss">Kenya</option>
-                                                    <option value="usa">USA</option>
-                                                </select>
+                                                <label for="{{ form.country.id_for_label }}">Country</label>
+                                                {{ form.country }}
+                                                {% if form.country.errors %}
+                                                    <small class="error">{{ form.country.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="phone">Phone number</label>
-                                                <input type="text" class="form-control" id="phone" required>
+                                                <label for="{{ form.pnumber.id_for_label }}">Phone number</label>
+                                                {{ form.pnumber }}
+                                                {% if form.pnumber.errors %}
+                                                    <small class="error">{{ form.pnumber.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="email">E-Mail</label>
-                                                <input type="text" class="form-control" id="email" value="{{ email }}" required>
+                                                <label for="{{ form.email.id_for_label }}">E-Mail</label>
+                                                {{ form.email }}
+                                                {% if form.email.errors %}
+                                                    <small class="error">{{ form.email.errors }}</small>
+                                                {% endif %}
                                             </div>
                                         </div>
 
@@ -278,7 +300,6 @@
                                         </button>
                                     </div>
                                 </div>
-                            </form>
             </div>
 
         </div>
@@ -295,7 +316,7 @@
 							<th style="width:50%">Product</th>
                             <th style="width:15%">Plan</th>
 							<th style="width:7%">Price</th>
-							<th style="width:10%"></th>
+							<th style="width:10%">Subscription</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -310,28 +331,102 @@
 								</div>
 							</td>
                             <td data-th="Price">{{ splan.pn_name }}</td>
-							<td id="price" data-th="Price">$ {{ splan.pn_yearly }}</td>
+							<td id="price" data-th="Price">Kshs {{ splan.pn_yearly }}</td>
+                            <td>1 year</td>
 						</tr>
 					</tbody>
                     <tfoot>
                     <tr>
+                        <td><div class="row">
+                            <div class="col-sm-2 hidden-xs"><img src="{% static 'images/offers.jpg'%}" class="img-responsive"></div>
+                            <div class="col-sm-10"></div>
+                        </div></td>
+                        <td><div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">Additional Offers</h4>
+                            </div>
+                        </div></td>
                         <td></td>
                         <td></td>
-                        <td><h5>Subtotal</h5></td>
-                        <td id="sub">25</td>
+                    </tr>
+                    <tr>
+                        <td><div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{% static 'images/domain.png' %}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<p>Promote your brand by having a personalised Site address with your name.</p>
+                                        <p>{{ form.dname }}
+                                                {% if form.dname.errors %}
+                                                    <small class="error">{{ form.dname.errors }}</small>
+                                                {% endif %}
+                                        </p>
+									</div>
+								</div></td>
+                        <td>Personalised Site name i.e. www.example.com</td>
+                        <td>Kshs &nbsp;2,500</td>
+                        <td>1 year</td>
+                    </tr>
+                    <tr>
+                        <td><div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{% static 'images/email.jpg' %}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<p>Customised email for the Organisation/Personal that goes togeether with the Site name i.e. name@yourcompany.com, info@yoursitename.com. With the option of having a dedicated inbox and services like Docs, Drive, Calender and adding othee email accounts.</p>
+									    <p>{{ form.edomain }}
+                                                {% if form.edomain.errors %}
+                                                    <small class="error">{{ form.edomain.errors }}</small>
+                                                {% endif %}
+                                        </p>
+                                    </div>
+								</div></td>
+                        <td>Personalised Organisation/Personal email</td>
+                        <td>Kshs &nbsp;12,000</td>
+                        <td>1 year</td>
+                    </tr>
+                    <tr>
+                        <td><div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{% static 'images/gplay.png' %}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<p>(Optional) Android app to accompany the Site, accessible from the Google Play store</p>
+                                        <p>{{ form.app }}
+                                                {% if form.app.errors %}
+                                                    <small class="error">{{ form.app.errors }}</small>
+                                                {% endif %}
+                                        </p>
+									</div>
+								</div></td>
+                        <td>Android Mobile App</td>
+                        <td>Kshs &nbsp;7500</td>
+                        <td>Life Offer</td>
+                    </tr>
+                    <tr>
+                        <td><div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{% static 'images/bonus.png' %}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<p>Comes free of Ads and Spams. In addition the first 6 months free service charges to the Sitea and Android app</p>
+									</div>
+								</div></td>
+                        <td>Bonus</td>
+                        <td>Kshs &nbsp;0.00</td>
+                        <td>6 months</td>
                     </tr>
                     <tr>
                         <td></td>
+                        <td>Subtotal</td>
+                        <td id="sub">25</td>
+                        <td></td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td><h6>Tax</h6></td>
-                        <td id="tax">$ 0.00</td>
+                        <td id="tax">Kshs 0.00</td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <td></td>
                         <td></td>
                         <td><h3>Total</h3></td>
                         <td id="total">25</td>
+                        <td></td>
                     </tr>
+
                     <tr>
                         <td>
                         <button id="previous_review" type="button" class="btn btn-default">
@@ -340,18 +435,16 @@
                         <td><button id="back_services" type="button" class="btn btn-danger">
                             <span class="fa fa-shopping-cart"></span> Shop Another Product
                         </button></td>
+                        <td><input type="submit" class="btn btn-primary" value="Place you order now" /></td>
                         <td></td>
-                        <td>
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="HFFZK94CDTPJJ">
-                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" disabled>
-                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                        </form></td>
                     </tr>
                     </tfoot>
                     </table>
+            </form>
             </div>
+        <div class="panel-footer text-center">
+            <p>Once you place your order, we shal get in touch with you to finalise the arrangement. Depending on what information you gave us, you will either get a call or an emall or both. Thank you for doing business with us.</p>
+        </div>
         </div>
     </div>
 
@@ -361,15 +454,93 @@
 <!-- end of the items being ordered -->
 
 {% endblock contents %}
-<footer class="container-fluid text-center bg-lightgray">
-
-        <div class="copyrights" style="margin-top:25px;">
-            <p>Copyright © 2016 @deaspo studios inc., All Rights Reserved
-                <br>
-                <span>Web Design By: Deaspo Studios</span></p>
-            <p><a href="https://www.linkedin.com/" target="_blank">Linkedin <i class="fa fa-linkedin-square" aria-hidden="true"></i> </a></p>
+    <!--footer start from here-->
+<footer>
+    <div class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Company </h3>
+                    <ul>
+                        <li> <a href="#"> About </a> </li>
+                        <li> <a href="#"> Blog </a> </li>
+                        <li> <a href="#"> Careers </a> </li>
+                        <li> <a href="#"> Legal </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Products </h3>
+                    <ul>
+                        <li> <a href="#"> Web Design </a> </li>
+                        <li> <a href="#"> Development </a> </li>
+                        <li> <a href="#"> Mobile Applications </a> </li>
+                        <li> <a href="#"> Desktop Applications </a> </li>
+                        <li> <a href="#"> Hosting</a> </li>
+                        <li> <a href="#"> Cloud </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Projects </h3>
+                    <ul>
+                        <li> <a href="#"> Websites </a> </li>
+                        <li> <a href="#"> Mobile </a> </li>
+                        <li> <a href="#"> Desktops </a> </li>
+                        <li> <a href="#"> Concepts </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                    <h3> Support </h3>
+                    <ul>
+                        <li> <a href="#"> Help </a> </li>
+                        <li> <a href="#"> Contact Support </a> </li>
+                        <li> <a href="#"> Tutorials </a> </li>
+                        <li> <a href="#"> Referral Progrsm </a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
+                    <h3> Social links </h3>
+                    <ul>
+                        <li>
+                            <div class="input-append newsletter-box text-center">
+                                <input type="text" class="full text-center" placeholder="Email to subscribe to our newsletters ">
+                                <button class="btn  bg-gray" type="button"> Subscribe </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="social">
+                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-linkedin">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-github-square">   </i> </a> </li>
+                        <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.row-->
         </div>
+        <!--/.container-->
+    </div>
+    <!--/.footer-->
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="copyright pull-left"> <strong>Copyright &copy; 2016<script>new Date().getFullYear()>2016&&document.write("-"+new Date().getFullYear());</script> Deaspo Studios Inc.</strong></p>
+                <div class="pull-right">
+                    <ul style="margin-right: 35px;" class="nav nav-pills payments">
+                        <li><i class="fa fa-cc-visa"></i></li>
+                        <li><i class="fa fa-cc-mastercard"></i></li>
+                        <li><i class="fa fa-cc-paypal"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.footer-bottom-->
 </footer>
+<!-- end footer -->
+
+
 
 
 <!-- JavaScript -->
@@ -421,14 +592,117 @@
             });
 
 
-            $('#qty').on('keyup change', function () {
+            /*$('#qty').on('keyup change', function () {
                 qty = this.value;
-                var price = document.getElementById("price").innerText.replace("$ ","");
-                var new_price = '$ ' + parseInt(qty,10)*parseInt(price,10) +'.00';
+                var price = document.getElementById("price").innerText.replace("Kshs ","");
+                var tmpPrice = parseInt(price,10);
+                var new_price = 'Kshs ' + parseInt(qty,10)*tmpPrice +'.00';
                 document.getElementById("subtotal").innerText = new_price;
                 document.getElementById("sub").innerText = new_price;
                 document.getElementById("total").innerText = new_price;
-            });
+            });*/
+
+            var n = String("{{ fullname }}");
+            document.getElementById("fullname").value = n;
+
+            if ($('#id_dname').prop('checked')){
+                dname = 2500;
+                var price = document.getElementById("price").innerText.replace("Kshs ","");
+                var tmpPrice = parseInt(price,10)+dname;
+                var new_price = 'Kshs ' + parseInt(1,10)*tmpPrice +'.00';
+                //document.getElementById("subtotal").innerText = new_price;
+                document.getElementById("sub").innerText = new_price;
+                document.getElementById("total").innerText = new_price;
+
+            }
+
+
+            /*if ($('#id_dname').change(function () {
+                       if (this.checked){
+                           dname = 2500;
+                            var price = document.getElementById("price").innerText.replace("Kshs ","");
+                            var tmpPrice = parseInt(price,10)+dname;
+                            var new_price = 'Kshs ' + parseInt(1,10)*tmpPrice +'.00';
+                            //document.getElementById("subtotal").innerText = new_price;
+                            document.getElementById("sub").innerText = new_price;
+                            document.getElementById("total").innerText = new_price;
+
+                       }
+                        else {
+                           dname = 0;
+                            var price = document.getElementById("price").innerText.replace("Kshs ","");
+                            var tmpPrice = parseInt(price,10)+dname;
+                            var new_price = 'Kshs ' + parseInt(1,10)*tmpPrice +'.00';
+                            //document.getElementById("subtotal").innerText = new_price;
+                            document.getElementById("sub").innerText = new_price;
+                            document.getElementById("total").innerText = new_price;
+                       }
+            }));*/
+            var price = document.getElementById("price").innerText.replace("Kshs ","");
+
+            if ($('#id_edomain').change(function () {
+                if (this.checked) {
+                    edomain = 12000;
+                }else {
+                    edomain = 0;}
+
+                if ($('#id_dname').prop('checked')){
+                    dname = 2500;
+                }else {dname = 0;}
+
+                if ($('#id_app').prop('checked')) {
+                    app = 7500;
+                }else {app = 0;}
+
+                var tmpPrice = parseInt(price,10)+dname+app+edomain ;
+                var new_price = 'Kshs ' + parseInt(1,10)*tmpPrice +'.00';
+                //document.getElementById("subtotal").innerText = new_price;
+                document.getElementById("sub").innerText = new_price;
+                document.getElementById("total").innerText = new_price;
+            }));
+
+            if ($('#id_app').change(function () {
+                if (this.checked) {
+                    app = 7500;
+                }else {
+                    app = 0;}
+
+                if ($('#id_dname').prop('checked')){
+                    dname = 2500;
+                }else {dname = 0;}
+
+                if ($('#id_edomain').prop('checked')) {
+                    edomain = 12000;
+                }else {edomain = 0;}
+
+                var tmpPrice = parseInt(price,10)+dname+app+edomain ;
+                var new_price = 'Kshs ' + parseInt(1,10)*tmpPrice +'.00';
+                //document.getElementById("subtotal").innerText = new_price;
+                document.getElementById("sub").innerText = new_price;
+                document.getElementById("total").innerText = new_price;
+            }));
+
+
+            if ($('#id_dname').change(function () {
+                if (this.checked) {
+                    dname = 2500;
+                }else {
+                    dname = 0;}
+
+                if ($('#id_app').prop('checked')){
+                    app = 7500;
+                }else {app = 0;}
+
+                if ($('#id_edomain').prop('checked')) {
+                    edomain = 12000;
+                }else {edomain = 0;}
+
+                var tmpPrice = parseInt(price,10)+dname+app+edomain ;
+                var new_price = 'Kshs ' + parseInt(1,10)*tmpPrice +'.00';
+                //document.getElementById("subtotal").innerText = new_price;
+                document.getElementById("sub").innerText = new_price;
+                document.getElementById("total").innerText = new_price;
+            }));
 
             $(function(){
              function submitState(el) {

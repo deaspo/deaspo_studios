@@ -80,13 +80,13 @@
             {% block pageContent %}
             {% for service in services %}
                 {% if forloop.counter < half %}
-                    <div style="margin-bottom: 30px;" class="col-xs-12 col-md-6">
+                    <div style="margin-bottom: 30px;min-height: 585px;max-height: 585px;" class="col-xs-12 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading clickable">
                                 <h3> {{ service.pname }}</h3><br>
                                 <span class="pull-right">read more about it <i class="fa fa-minus"></i></span>
                             </div>
-                            <div style="color: #0b0b0b" class="panel-body">
+                            <div style="color: #0b0b0b;height: 460px" class="panel-body">
                                 <div style="background-image: url({{ service.ppics.url }});background-size: 100% 100%;" class="pn col-lg-6">
                                 </div>
                                 <div class="col-sm-12 london-title">
@@ -103,13 +103,13 @@
                         </div>
                     </div>
                 {% else %}
-                    <div style="margin-bottom: 30px;" class="col-xs-12 col-md-6">
+                    <div style="margin-bottom: 40px;min-height: 585px;max-height: 585px;" class="col-xs-12 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading clickable">
                                 <h3> {{ service.pname }}</h3><br>
                                 <span class="pull-right">read more about it <i class="fa fa-minus"></i></span>
                             </div>
-                            <div style="color: #0b0b0b" class="panel-body">
+                            <div style="color: #0b0b0b;height: 460px" class="panel-body">
                                 <div style="background-image: url({{ service.ppics.url }});background-size: 100% 100%;" class="pn col-lg-6">
                                 </div>
                                 <div class="col-sm-12 london-title">
@@ -155,7 +155,7 @@
 
                     <div>
                         <i class="fa fa-github-square"></i>
-                        <p><a href="#">Githube <br>Page</a></p>
+                        <p><a href="https://github.com/deaspostudios">Githube <br>Page</a></p>
                     </div>
 
                     <div>
@@ -317,7 +317,7 @@
                         <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-linkedin">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-github-square">   </i> </a> </li>
+                        <li> <a href="https://github.com/deaspostudios"> <i class="fa fa-github-square">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
                     </ul>
                 </div>
