@@ -69,6 +69,7 @@ class EmailPlan(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    address = models.URLField(default='')
 
 
     def __str__(self):

@@ -49,7 +49,7 @@
                    <b class="caret"></b></a>
                    <ul class="dropdown-menu" role="menu">
                        {% for project in projects %}
-                            <li><a href="{% url 'project' project.id %}">{{ project.name }}</a></li>
+                            <li><a href="{{ project.address }}" target="_blank">{{ project.name }}</a></li>
                             <li class="divider"></li>
                        {% endfor %}
                    </ul>
