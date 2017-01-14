@@ -1,0 +1,248 @@
+.banner_lg  {
+        padding-top: 100px;
+        padding-bottom: 10px;
+        position: relative;
+    }
+
+/* start banner_lg */
+.banner_lg
+    {
+        background: url('../images/header.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: #FFFFFF;
+    }
+.banner_lg h2
+    {
+        font-size: 40px;
+    }
+.banner_lg strong
+    {
+        color: #93ca3a;
+    }
+.banner_lg h3
+    {
+        padding-bottom: 30px;
+    }
+/* end banner_lg */
+
+/* start section_img1 */
+.sect_image1
+    {
+    position: relative;
+}
+
+.sect_image1
+    {
+    background: url('../images/img1.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 350px;
+    display: table;
+    color: #FFFFFF;
+}
+/* end section_img1 */
+
+
+/* start section_img2 */
+.sect_image2
+    {
+    position: relative;
+}
+
+.sect_image2
+    {
+    background: url('../images/img2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 350px;
+    display: table;
+    color: #FFFFFF;
+}
+/* end section_img2 */
+
+/* start product description */
+.mobile_description
+    {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+
+/* end product description */
+/* banner-small */
+.banner_sm  {
+        padding-bottom: 10px;
+        position: relative;
+    }
+
+/* start banner_lg */
+.banner_sm
+    {
+        background: url('../images/banner_sm.jpg');
+        background-size: 100%;
+        height: 100px;
+        background-repeat: no-repeat;
+        color: #FFFFFF;
+    }
+.banner_sm h2
+    {
+        font-size: 40px;
+    }
+.banner_sm strong
+    {
+        color: #93ca3a;
+    }
+.banner_sm h3
+    {
+        padding-bottom: 15px;
+    }
+
+/* end of banner-small*/
+/*  */
+.dedicated_content {
+    color: #333;
+    font-family: "robotoregular";
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+ul {
+    list-style: outside none square;
+    margin: 0;
+    padding: 0;
+}
+
+ul.list_dedicant_list2 {
+    margin-left: 6%;
+    width: 46%;
+}
+
+ul.list_dedicant {
+    float: left;
+    margin-top: 20px;
+    width: 46%;
+}
+
+.getittouch_wrapper {
+    float: left;
+    margin-top: 25px;
+    width: 100%;
+}
+
+a.get-in-touch {
+    background: #f78f1e none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-family: "robotobold";
+    font-size: 21px;
+    margin-left: 55px;
+    padding: 10px 23px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+a {
+    color: #69aa6f;
+    text-decoration: none;
+}
+a, a.hover {
+    outline: 0 none;
+}
+
+.infogrphic_img {
+    margin-top: 55px;
+    position: relative;
+}
+.heading_caption {
+    padding: 26px 0 0px 0;
+    text-align: center;
+}
+.border_slack {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #ccc #ccc -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    float: left;
+    width: 100%;
+}
+.border_slack2 {
+    border: 1px solid #ccc;
+    float: left;
+    width: 100%;
+}
+.instrusy_list {
+    border-right: 1px solid #ccc;
+    color: #262626;
+    font-family: "robotoregular";
+    font-size: 15px;
+    padding: 28px 0 18px;
+    text-align: center;
+}
+.instrusy_list .icons {
+    font-size: 49px;
+}
+.border-right {
+    border-right: medium none;
+}
+/*   */
+/* review sections */
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+	margin-top: 15px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:12px;
+}
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:13px;
+}
+/* end of review */
+
+/* start section_img2 */
+.sect_win
+    {
+    position: relative;
+}
+
+.sect_win
+    {
+    background: url('../images/winmob.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 400px;
+    display: table;
+    color: #FFFFFF;
+}
+/* end section_img2 */
+.getintouch_right {
+    float: right;
+    margin-top: 15px;
+    margin-right: 15px;
+}

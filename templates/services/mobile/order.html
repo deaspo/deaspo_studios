@@ -1,0 +1,351 @@
+{% extends 'services/order.html' %}
+{% load staticfiles %}
+{% block orderItems %}
+
+     <!-- The items being ordered -->
+
+<div class="container">
+    <div id="cart" style="margin-top: 20px">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:70%">Product</th>
+							<th style="width:30%">Starting Price</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{{ service.ppics.url }}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">{{ service.pname }}</h4>
+										<p>{{ service.pshortdesc }}</p>
+									</div>
+								</div>
+							</td>
+							<td id="price" data-th="Price">Kshs {{ service.p_mstart_price }}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        <button id="next_cart" type="button" class="btn btn-success">
+                            Next <span class="fa fa-caret-right"></span>
+                        </button></td>
+                    </tr>
+                </tfoot>
+				</table>
+            </div>
+        </div>
+    </div>
+    <div id="address" style="margin-top: 20px;display: none;">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <form method="post" action="" id="user_address">
+                    {% csrf_token %}
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="{{ form.fname.id_for_label }}">Full Name</label>
+                                                {{ form.fname }}
+                                                {% if form.fname.errors %}
+                                                    <small class="error">{{ form.fname.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="{{ form.cname.id_for_label }}">Company Name</label>
+                                                {{ form.cname }}
+                                                {% if form.cname.errors %}
+                                                    <small class="error">{{ form.cname.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="{{ form.sname.id_for_label }}">Street</label>
+                                                {{ form.sname }}
+                                                {% if form.sname.errors %}
+                                                    <small class="error">{{ form.sname.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-2">
+                                            <div class="form-group">
+                                                <label for="{{ form.zcode.id_for_label }}">Zip code</label>
+                                                {{ form.zcode }}
+                                                {% if form.zcode.errors %}
+                                                    <small class="error">{{ form.zcode.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                       <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label for="{{ form.city.id_for_label }}">City</label>
+                                                {{ form.city }}
+                                                {% if form.city.errors %}
+                                                    <small class="error">{{ form.city.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="{{ form.country.id_for_label }}">Country</label>
+                                                {{ form.country }}
+                                                {% if form.country.errors %}
+                                                    <small class="error">{{ form.country.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="{{ form.pnumber.id_for_label }}">Phone number</label>
+                                                {{ form.pnumber }}
+                                                {% if form.pnumber.errors %}
+                                                    <small class="error">{{ form.pnumber.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="{{ form.email.id_for_label }}">E-Mail</label>
+                                                {{ form.email }}
+                                                {% if form.email.errors %}
+                                                    <small class="error">{{ form.email.errors }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                {% block platform %}
+                                                <label for="{{ form.platform.id_for_label }}">Preferred Platform</label>
+                                                {{ form.platform }}
+                                                {% if form.platform.errors %}
+                                                    <small class="error">{{ form.platform.errors }}</small>
+                                                {% endif %}
+                                                {% endblock platform %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+
+                                <div class="box-footer">
+                                    <div class="pull-left">
+                                        <button id="previous_address" type="button" class="btn btn-default"><span class="fa fa-caret-left"></span> Back to cart</button>
+                                    </div>
+                                    <div class="pull-right">
+                                        <!--<input id="next_address" type="submit" class="btn" value="Next" />-->
+                                        <button id="next_address" type="button" class="btn btn-success" >Next<i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="review" style="margin-top: 20px;display: none">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title center-block">Review Your Order</div>
+            </div>
+            <div style="margin-top: 20px;" class="panel-body">
+                <table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+							<th style="width:7%">Starting Price</th>
+							<th style="width:10%">Subscription</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{{ service.ppics.url }}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<h4 class="nomargin">{{ service.pname }}</h4>
+										<p>{{ service.pshortdesc }}</p>
+									</div>
+								</div>
+							</td>
+							<td id="price" data-th="Price">Kshs {{ service.p_mstart_price }}</td>
+                            <td>1 year</td>
+						</tr>
+					</tbody>
+                    <tfoot>
+                    <tr>
+                        <td><div class="row">
+                            <div class="col-sm-2 hidden-xs"><img src="{% static 'images/offers.jpg'%}" class="img-responsive"></div>
+                            <div class="col-sm-10"></div>
+                        </div></td>
+                        <td><div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">Additional Offers</h4>
+                            </div>
+                        </div></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><div class="row">
+									<div class="col-sm-2 hidden-xs"><img src="{% static 'images/bonus.png' %}" alt="..." class="img-responsive"/></div>
+									<div class="col-sm-10">
+										<p>The first 6 months free maintenance and consultancy services for the app</p>
+									</div>
+								</div></td>
+                        <td>Bonus</td>
+                        <td>6 months</td>
+                    </tr>
+                    <tr>
+                        <td><h4>Subtotal</h4></td>
+                        <td id="sub">{{ service.p_mstart_price }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><h4>Tax</h4></td>
+                        <td id="tax">Kshs 0.00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><h3>Total</h3></td>
+                        <td id="total">{{ service.p_mstart_price }}</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                        <button id="previous_review" type="button" class="btn btn-default">
+                            <span class="fa fa-caret-left"></span> Previous
+                        </button></td>
+                        <td><button id="back_services" type="button" class="btn btn-danger">
+                            <span class="fa fa-shopping-cart"></span> Shop Another Product
+                        </button></td>
+                        <td><input type="submit" class="btn btn-primary" value="Place you order now" /></td>
+                    </tr>
+                    </tfoot>
+                    </table>
+            </form>
+            </div>
+        <div class="panel-footer text-center">
+            <p>Once you place your order, we shall get in touch with you to finalise the arrangement. Depending on what information you gave us, you will either get a call or an emall or both. Thank you for doing business with us.</p>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- end of the items being ordered -->
+
+
+
+
+{% endblock orderItems %}
+
+{% block addScripts %}
+
+    <script>
+        $(document).ready(function () {
+            //button clicks
+            $('#back_services').click(function () {
+               location.href = '/';
+            });
+            //next on cart tab
+            $('#next_cart').click(function () {
+                $('#cart').hide();
+                $('#cart_bar').removeClass("active");
+                $('#address_bar').addClass("active");
+                $('#address').show();
+
+            });
+            //next on address tab
+            $('#next_address').click(function () {
+                $('#address').hide();
+                $('#address_bar').removeClass("active");
+                $('#review_bar').addClass("active");
+                $('#review').show();
+
+            });
+            //previous buttons
+            $('#previous_review').click(function () {
+                $('#review').hide();
+                $('#review_bar').removeClass("active");
+                $('#address_bar').addClass("active");
+                $('#address').show();
+
+            });
+
+            $('#previous_address').click(function () {
+                $('#address').hide();
+                $('#address_bar').removeClass("active");
+                $('#cart_bar').addClass("active");
+                $('#cart').show();
+
+            });
+
+            var n = String("{{ fullname }}");
+            document.getElementById("fullname").value = n;
+
+            var price = document.getElementById("price").innerText.replace("Kshs ","");
+
+
+            $(function(){
+             function submitState(el) {
+
+                var $form = $(el),
+                    $requiredInputs = $form.find('input:required'),
+                    //$submit = $form.find('button[type="submit"]');
+                    $submit = $('#next_address');
+                $submit.attr('disabled', 'disabled');
+
+                $requiredInputs.keyup(function () {
+
+                  $form.data('empty', 'false');
+
+                  $requiredInputs.each(function() {
+                    if ($(this).val() === '') {
+                      $form.data('empty', 'true');
+                    }
+                  });
+
+                  if ($form.data('empty') === 'true') {
+                    $submit.attr('disabled', 'disabled').attr('title', 'fill in all required fields');
+                  } else {
+                    $submit.removeAttr('disabled').attr('title', 'click to submit');
+                  }
+                });
+              }
+
+              // apply to each form element individually
+                submitState('#user_address');
+              //submitState('#login_user');
+            });
+
+        });
+    </script>
+
+
+{% endblock addScripts %}

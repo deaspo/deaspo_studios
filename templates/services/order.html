@@ -137,7 +137,7 @@
         <hr class="col-xs-12" />
     </div>
 </div>
-
+{% block orderItems %}
  <!-- The items being ordered -->
 
 <div class="container">
@@ -452,6 +452,7 @@
 
 
 <!-- end of the items being ordered -->
+    {% endblock orderItems %}
 
 {% endblock contents %}
     <!--footer start from here-->
@@ -546,6 +547,7 @@
 <!-- JavaScript -->
     <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
     <script src="{% static 'services/service/js/bootstrap.min.js' %}"></script>
+    {% block addScripts %}
     <script>
         $(document).ready(function () {
             document.getElementById("subtotal").innerText = document.getElementById("price").innerText;
@@ -749,13 +751,10 @@
                 if (flag==required.length-1) $('input[type=submit]').prop('disabled',false);
                 else $('input[type=submit]').prop('disabled', true);
             });*/
-            
+
         });
     </script>
-
-
-
-
+    {% endblock addScripts %}
 
 
 </body>

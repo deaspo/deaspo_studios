@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from decimal import Decimal
 from django.db.models.signals import post_save
+from django.utils.timezone import now
 
 from django.db import models
 
@@ -97,7 +98,7 @@ class Product(models.Model):
     pdesc = models.TextField(max_length=3000, default='Product description')
     prel = models.ManyToManyField("self", blank=True)
     pproj = models.ManyToManyField(Project)
-    plan = models.ManyToManyField(Plan)
+    plan = models.ManyToManyField(Plan, blank=True)
     type = (
         ('A', 'Web'),
         ('B', 'Desktop'),
@@ -107,6 +108,9 @@ class Product(models.Model):
     category = models.CharField(choices=type,default="Web", max_length=50)
 
     pmain = models.BooleanField(default=False)
+    p_mobile_android = models.TextField(max_length=1500, blank=True)
+    p_mobile_windows = models.TextField(max_length=1500, blank=True)
+    p_mstart_price = models.DecimalField(decimal_places=2,max_digits = 7,default=7500)
 
 
     # compressing and resizing the image before saving
@@ -148,12 +152,12 @@ class ProductWebOrder(models.Model):
     contact_address = models.TextField(max_length=1000)
     notes = models.TextField(max_length=1000)
     acceptance_terms = models.BooleanField(default=True)
-    posted_date = models.DateTimeField(default=datetime.now(), editable=False)
+    posted_date = models.DateTimeField(default=now, editable=False)
 
 class UserNext(models.Model):
    user = models.OneToOneField(User)
    next = models.CharField(max_length=100, null=True, blank=True, default=None)
-   create_date = models.DateTimeField(default=datetime.now())
+   create_date = models.DateTimeField(default=now)
 
 
 class Comment(models.Model):
@@ -295,6 +299,47 @@ class OrderAddress(models.Model):
     dprice = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7,default=2500)
     eprice = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7,default=12000)
     aprice = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')],max_digits=7,default=7500)
+
+class MobileOrders(models.Model):
+    hosting_plan = models.CharField(max_length=100)
+    hosting_start_price = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')], max_digits=7)
+    fname = models.CharField(max_length=100)
+    cname = models.CharField(max_length=100)
+    sname = models.CharField(max_length=100)
+    zcode = models.IntegerField(validators=[MinLengthValidator(limit_value=5, message="Enter the correct code"),
+                                            MaxLengthValidator(limit_value=5, message="Enter the correct code"),
+                                            MinValueValidator(limit_value=00000, message="Cannot be negative")])
+    city = models.CharField(max_length=100)
+    choices = (('A', 'Kenya'),
+               ('B', 'Others'),)
+    country = models.CharField(max_length=100, choices=choices, default="Kenya")
+    pnumber = models.IntegerField(validators=[MinLengthValidator(limit_value=10, message="Enter the correct code"),
+                                              MaxLengthValidator(limit_value=10, message="Enter the correct code"),
+                                              MinValueValidator(limit_value=0000000000, message="Cannot be negative")])
+    email = models.EmailField(validators=[EmailValidator(message="Invalid email address")])
+    os = (('A', 'Windows'),('B','Android'),('C','Both'))
+    platform = models.CharField(max_length=100, choices=os, default="Android")
+
+
+class DesktopOrders(models.Model):
+    hosting_plan = models.CharField(max_length=100)
+    hosting_start_price = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')], max_digits=7)
+    fname = models.CharField(max_length=100)
+    cname = models.CharField(max_length=100)
+    sname = models.CharField(max_length=100)
+    zcode = models.IntegerField(validators=[MinLengthValidator(limit_value=5, message="Enter the correct code"),
+                                            MaxLengthValidator(limit_value=5, message="Enter the correct code"),
+                                            MinValueValidator(limit_value=00000, message="Cannot be negative")])
+    city = models.CharField(max_length=100)
+    choices = (('A', 'Kenya'),
+               ('B', 'Others'),)
+    country = models.CharField(max_length=100, choices=choices, default="Kenya")
+    pnumber = models.IntegerField(validators=[MinLengthValidator(limit_value=10, message="Enter the correct code"),
+                                              MaxLengthValidator(limit_value=10, message="Enter the correct code"),
+                                              MinValueValidator(limit_value=0000000000, message="Cannot be negative")])
+    email = models.EmailField(validators=[EmailValidator(message="Invalid email address")])
+    os = (('A', 'Windows'),('B','Linus Services'))
+    platform = models.CharField(max_length=100, choices=os, default="Windows")
 
 choices = (('A','Kenya'),
                ('B','Others'),)

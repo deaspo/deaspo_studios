@@ -1,0 +1,131 @@
+{% extends 'services/mobile/index.html' %}
+{% load staticfiles %}
+
+{% block desc %}
+    <div class="desk_image1 col-md-3 col-sm-3 col-xs-12"></div>
+    <div class="col-md-6 col-sm-6  col-xs-12">
+        <p> {{ service.pdesc|linebreaks }}</p>
+
+    </div>
+    <div class="desk_image2 col-md-3 col-sm-3 col-xs-12"></div>
+{% endblock desc %}
+
+
+{% block windows %}
+{% endblock windows %}
+
+{% block android %}
+{% endblock android %}
+{% block softDev %}
+    <div class="php_serivces_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="technial_expert_list change_color">
+                        <div class="london-title">
+                            <h2>Software Development & Consulting</h2>
+                            <h3>Personalised Software According to Business Requirements</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12 col-md-12 b_bg">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:">
+                                  <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s1.png'%}" alt="Custom Software Development" title="Custom Software Development"></div>
+                                    <div class="cotnent">Custom Software Development</div>
+                                  </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="es">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s2.png'%}" alt="Software Reengineering Services" title="Software Reengineering Services"></div>
+                            <div class="cotnent">Software Reengineering Services</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="s_management_s">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s3.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                            <div class="cotnent">Software Management Services</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="s_maintenance_s">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s4.png'%}" alt="Software Maintenance Services" title="Software Maintenance Services"></div>
+                            <div class="cotnent">Software Maintenance Services</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="wp">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s5.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                            <div class="cotnent">Business Intelligence </div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="newaddc">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s6.png'%}" alt="Data Visualization &amp; Analytics" title="Data Visualization &amp; Analytics"></div>
+                            <div class="cotnent">Data Visualization &amp; Analytics</div>
+                          </div>
+                          </a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+
+{% block soft_prod_dev %}
+<div class="cloud_img gray_color">
+    <div class="container">
+        <div class="row">
+            <div class="heading_caption change_color">
+                <h2> Software Product Development</h2>
+                <p class="change_color_text">We optimally claim our software product development expertise through the advanced involvement of our Software Product engineering team in devising most assertive and advanced solutions for you. A software product development team has to perform in accord with the client's engineering team for ideal results. We address this facet of software development process most aggressively with our streamlined and well-planned resources. Our product development services help client leverage on strong value propositions. We offer our clients with reduced development costs and quality manpower to help them get most eminent results</p>
+            </div>
+            <ul class="cloud_list">
+                <li>
+                    <div class="image">
+                        <img src="{% static 'services/desktop/images/im1.png' %}" alt="Software Product Ideation" title="Software Product Ideation">
+                    </div>
+                    <p> Software Product <br> Ideation</p>
+                </li>
+                <li>
+                    <div class="image">
+                        <img src="{% static 'services/desktop/images/im2.png' %}" alt="Software Product Architecture Design &amp; Development" title="Software Product Architecture Design &amp; Development">
+                    </div>
+                    <p> Architecture Design <br>&amp; Development</p>
+                </li>
+                <li>
+                    <div class="image">
+                        <img src="{% static 'services/desktop/images/im3.png' %}" alt="Software Product Testing and QA" title="Software Product Testing and QA">
+                    </div>
+                    <p>Software Product <br>Testing and QA</p>
+                </li>
+                <li>
+                    <div class="image">
+                        <img src="{% static 'services/desktop/images/im4.png' %}" alt="Migration and Porting" title="Migration and Porting">
+                    </div>
+                    <p> Porting &amp; <br>Solutions</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block a1 %}
+    <a href="{% url 'desktop' service.id %}" class="btn btn-primary">Seek Our Services</a>
+{% endblock a1 %}
+{% block a2 %}
+    <a href="{% url 'desktop' service.id %}" class="get-in-touch no-margin">Hire Us</a>
+{% endblock a2 %}
+{% block a3 %}
+    <a href="{% url 'desktop' service.id %}" class="get-in-touch no-margin">Hire Us</a>
+{% endblock a3 %}
+{% block a4 %}
+    <a href="{% url 'desktop' service.id %}" class="btn btn-primary">
+{% endblock a4 %}

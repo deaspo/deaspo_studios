@@ -1,0 +1,316 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block pageTitle %}
+{{ service.pname }}
+{% endblock pageTitle %}
+{% block addStyles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'services/mobile/css/mobile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'services/mobile/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'services/desktop/css/desktop.css' %}">
+{% endblock addStyles %}
+
+{% block pageHeading %}
+
+{% endblock pageHeading %}
+
+{% block pageContent %}
+    <div class="banner_lg  text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-sm-1"></div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="wow bounce"><strong> {{ service.pname }}</strong></h2>
+                    <h3 class="wow fadeIn" data-wow-delay="0.6s"> {{ service.pintro }} </h3>
+                    <br>{% block a4 %}
+                    <a href="{% url 'mobile' service.id %}" class="btn btn-primary">{% endblock a4 %}HIRE US AS YOUR DEVELOPER</a>
+                </div>
+                <div class="col-md-2 col-sm-2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile_description">
+        <div class="container">
+            <div class="row">
+                {% block desc %}
+                <div class="sect_image1 col-md-3 col-sm-3 col-xs-12"></div>
+                <div class="col-md-5 col-sm-5  col-xs-12">
+                    <p> {{ service.pdesc|linebreaks }}</p>
+
+                </div>
+                <div class="sect_image2 col-md-4 col-sm-4 col-xs-12"></div>
+                {% endblock desc %}
+            </div>
+        </div>
+    </div>
+    <div class="banner_sm">
+        <div class="getintouch_right">
+            {% block a1 %}
+            <a href="{% url 'mobile' service.id %}" class="btn btn-primary">Seek Our Services</a> {% endblock a1 %}
+        </div>
+    </div>
+    {% block windows %}
+    <div class="mobile_description">
+        <div class="container">
+            <div class="row">
+                <div class="sect_win col-md-3 col-sm-3 col-xs-12"></div>
+                <div class="col-md-9 col-sm-9">
+                    <div class="london-title">
+                        <div class="heading">
+                            <h2>Windows App Development</h2>
+                            <h3>Developing Exciting Apps for Windows Based Devices</h3>
+                        </div>
+                    </div>
+                    <p> {{ service.p_mobile_windows|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        {% endblock windows %}
+        {% block softDev %}
+        {% endblock softDev %}
+    <div class="banner_sm">
+        <div class="getintouch_right">
+            {% block a2 %}
+            <a href="{% url 'mobile' service.id %}" class="get-in-touch no-margin">Hire Us</a> {% endblock a2 %}
+        </div>
+    </div>
+    {% block android %}
+    <div class="mobile_description">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-9">
+                    <div class="london-title">
+                        <div class="heading">
+                            <h2>Android App Development</h2>
+                            <h3>Developing Exciting Apps for Mobile Based Devices</h3>
+                        </div>
+                    </div>
+                    <p> {{ service.p_mobile_android|linebreaks }}</p>
+                </div>
+                <div class="sect_image2 col-md-3 col-sm-3 col-xs-12"></div>
+            </div>
+        </div>
+    </div>
+        {% endblock android %}
+    {% block softPr %}
+        {% endblock softPr %}
+    <div class="container">
+        <div class="row mobile_description">
+            <div class="col-sm-7 col-xs-12 col-md-7">
+                <div class="london-title">
+                    <div class="heading">
+                        <h2>Why Hire Us?</h2>
+                        <h3>Developing Exciting Apps for Mobile</h3>
+                    </div>
+                </div>
+                <div class="dedicated_content">Hire Android Developer for Android Development is now a global phenomenon and is bulging and taking a more massive shape in Android app development, each day. Most of the resourceful development companies across the world have now prioritized their processes and offerings such as hire Android developer to keep pace with this prolific mobile apps category</div>
+                <ul class="list_dedicant">
+                    <li>Strong OO design and programming skills</li>
+                    <li>Familiar with the Android SDK/NDK</li>
+                    <li>Familiar with Android & Visual Studio</li>
+                    <li>Expertise in Database Management</li>
+                </ul>
+                <ul class="list_dedicant list_dedicant_list2">
+                    <li>Third Party integration - Google Firebase</li>
+                    <li>Experience using social media APIs</li>
+                    <li>Web service - JSON</li>
+                    <li>Excellent debugging and optimization </li>
+                </ul>
+                <div class="getittouch_wrapper">
+                    {% block a3 %}
+                    <a href="{% url 'mobile' service.id %}" class="get-in-touch no-margin">Hire Us</a>{% endblock a3 %}
+                </div>
+            </div>
+            <div class="col-sm-5 col-md-5">
+                <div class="infogrphic_img">
+                    <img src="{% static 'services/mobile/images/infographic.png' %}" class="img-responsive" alt="Mobile App Development - Deaspo Studios Inc.">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block soft_prod_dev %}
+
+    {% endblock soft_prod_dev %}
+    <div class="container">
+        <div class="row mobile_description">
+            <div class="heading_caption">
+                <h2> The Industry that We Serve</h2>
+                <p>Deaspo Studios Inc. has grown and now is providing solutions to the following industries</p>
+            </div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="border_slack">
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-plane icons"></i>
+                                <p> Transportation</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-plus icons"></i>
+                                <p> Health</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-shopping-cart icons"></i>
+                                <p> eCommerce</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-mobile-phone icons"></i>
+                                <p> Automobile</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-credit-card icons"></i>
+                                <p> Finance</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-book icons"></i>
+                                <p> Education</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="border_slack2">
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-home icons"></i>
+                                <p> Real Estate</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-map icons"></i>
+                                <p> Tourism</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-gears icons"></i>
+                                <p> Automation</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-lightbulb-o icons"></i>
+                                <p> Energy</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-briefcase icons"></i>
+                                <p> Retail</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-2">
+                            <div class="row instrusy_list">
+                                <i class="fa fa-industry icons"></i>
+                                <p> Manufacturing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock pageContent %}
+{% block reviews %}
+    <div class="review-block">
+        <h2 class="text-left"> Client Testimonials & Reviews </h2>
+        {% for comment in service.comments.all %}
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="{{ comment.pic.url }}" class="img-rounded">
+                    <div class="review-block-name"><a href="#">{{ comment.user }}</a></div>
+                    <div class="review-block-date">Posted<br/>{{ comment.posted }}</div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="review-block-title">{{ comment.title }}</div>
+                    <div class="review-block-description">{{ comment.body }}</div>
+                </div>
+                <div class="pull-left" style="width:35px; line-height:1;">
+                    <div style="height:9px; margin:5px 0;">{{ comment.rating }} <span class="fa fa-star checked"></span></div>
+                </div>
+                <div class="pull-left" style="width:180px;">
+                    <div class="progress" style="height:9px; margin:8px 0;">
+                        <div class="{% if comment.rating == 5 %}
+                                                    progress-bar progress-bar-success
+                                                 {% elif comment.rating == 4 %}
+                                                    progress-bar progress-bar-primary
+                                                {% elif comment.rating == 3 %}
+                                                    progress-bar progress-bar-info
+                                                {% elif comment.rating == 2 %}
+                                                    progress-bar progress-bar-warning
+                                                {% elif comment.rating == 1 %}
+                                                    progress-bar progress-bar-danger
+                                                {% else %}
+                                                progress-bar
+                                                   {% endif %}" role="progressbar" aria-valuenow="{{ comment.rating }}" aria-valuemin="0" aria-valuemax="5" style="{% if comment.rating == 5 %}
+                                            width: 100%;
+                                            {% elif comment.rating == 4 %}
+                                                width: 80%;
+                                            {% elif comment.rating == 3 %}
+                                                width: 60%;
+                                            {% elif comment.rating == 2 %}
+                                                width: 40%;
+                                            {% elif comment.rating == 1 %}
+                                                width: 20%;
+                                            {% else %}
+                                                width: 0%;
+                                        {% endif %}">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% empty %}
+                            <h3 class="text-left"> No reviews, be the first </h3>
+                        {% endfor %}
+
+        <hr/>
+    </div>
+    <div class="review-block row" style="margin-top:40px;">
+
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <div class="text-right">
+                    <a class="btn btn-success btn-green" id="open-review-box">Leave a Review</a>
+                </div>
+
+                <div class="row" id="post-review-box" style="display:none;">
+                    <div class="col-md-12">
+                        <form accept-charset="UTF-8" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="hidden" name="form-type" value="review-form" /> <!-- set type -->
+                                        <!--<input id="ratings-hidden" name="rating" type="hidden">
+                                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>-->
+
+                            <div class="text-right">
+                                <div class="stars starrr" data-rating="0"><p style="color: black;">Don't forget to rate this product!</p></div>
+                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                    <span class="fa fa-remove"></span>Cancel</a>
+                                <button class="btn btn-success btn-lg" type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock reviews %}
+{% block addScripts %}
+    <script src="{% static 'services/service/js/custom.js' %}"></script>
+{% endblock addScripts %}
