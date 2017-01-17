@@ -270,17 +270,7 @@ def index(request):
     projects = Project.objects.all()#return all the projects
     return render(request, "base.html", {'services':products, 'projects':projects, 'cform':cform, 'half':half_preducts})
 
-def test(request, service_id):
-    service = get_object_or_404(Product, pk=service_id)
-
-    if not request.POST:
-        form = MobileOrderForm()
-    else:
-        form = MobileOrderForm(request.POST)
-        if form.is_valid():
-            form.hosting_plan = service.pname
-            form.hosting_plan_price = service.p_mstart_price
-            return HttpResponseRedirect('/')
+def test(request):
     if request.POST:
         cform = ContactForm(request.POST)
         if cform.is_valid():
@@ -290,7 +280,7 @@ def test(request, service_id):
         cform = ContactForm()
     products = Product.objects.all()  # returns all the products and services
     projects = Project.objects.all()  # return all the projects
-    return render(request,'services/desktop/index.html',{'services':products, 'projects':projects, 'cform':cform})
+    return render(request,'500.html',{'services':products, 'projects':projects, 'cform':cform})
 
 
 @login_required

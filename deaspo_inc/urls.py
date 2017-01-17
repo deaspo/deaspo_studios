@@ -41,7 +41,7 @@ urlpatterns = [
     url(r'delete_user/(\d+)/?$',views.del_user,name='delete_user'),
     url(r'about/?$',views.about,name="about"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^test/(\d+)/?$',views.test,name='test'),
+    url(r'^test/?$',views.test,name='test'),
 ]
 
 if settings.DEBUG:

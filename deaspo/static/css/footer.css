@@ -8,7 +8,7 @@
 	display: block;
 }
 .footer {
-	background: #EDEFF1;
+	background: black;
 	height: auto;
 	margin-top: 30px;
 	padding-bottom: 30px;
@@ -25,7 +25,7 @@
 }
 .footer h3 {
 	border-bottom: 1px solid #BAC1C8;
-	color: #54697E;
+	color: #f5f5f5;
 	font-size: 18px;
 	font-weight: 600;
 	line-height: 27px;
@@ -45,7 +45,7 @@
 	display: block;
 }
 .footer a {
-	color: #78828D
+	color: #f2dede;
 }
 .supportLi h4 {
 	font-size: 20px;
@@ -111,7 +111,7 @@
 	-o-transform: scale(1.1) rotate(360deg);
 }
 .social li a {
-	color: #EDEFF1;
+	color: #f2dede;
 }
 .social li:hover {
 	border: 2px solid #2c3e50;
@@ -123,7 +123,7 @@
 	color: #EDEFF1 !important;
 }
 .footer-bottom {
-	background: #E3E3E3;
+	background: #EFEFEF;
 	border-top: 1px solid #DDDDDD;
 	padding-top: 10px;
 	padding-bottom: 10px;

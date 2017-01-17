@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,400italic'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
     <!--<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">-->
 
     <link rel="stylesheet" type="text/css" href="{% static 'services/service/css/bootstrap.min.css' %}">
@@ -14,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/nav_fixed.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel_home.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/panel_img.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/heading_text.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bg_animation.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/left_right_panel.css' %}">
@@ -57,7 +60,8 @@
                    </ul>
                </li>
                 <li><a href="{% url 'about' %}">About<span class="sr-only">(current)</span></a> </li>
-                <li><a href="#contactForm" data-toggle="modal" data-target="#contactForm" data-backdrop="static" data-keyboard="false" class="main-menu-link contact block-keep-ratio__content flexbox-center">Contact us<span class="sr-only">(current)</span></a> </li>
+                {% block contact %}
+                <li><a href="#contactForm" data-toggle="modal" data-target="#contactForm" data-backdrop="static" data-keyboard="false" class="main-menu-link contact block-keep-ratio__content flexbox-center">Contact us<span class="sr-only">(current)</span></a> </li>{% endblock contact %}
               </ul>
         </div>
     </div>
@@ -68,14 +72,92 @@
 
 <!--end of organisation motto-->
 <!-- beginning of left and right sidebars -->
-
 <div class="container">
+    <div class="row" id="intro-ssection">
+        <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
 
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                {% for count in services %}
+                    {% if count.id == 1 %}
+                        <li data-target="#bootstrap-touch-slider" data-slide-to="{{ count.id }}" class="active"></li>
+                    {% else %}
+                        <li data-target="#bootstrap-touch-slider" data-slide-to="{{ count.id }}"></li>
+                    {% endif %}
+                {% endfor %}
+
+            </ol>
+
+            <!-- Wrapper For Slides -->
+            <div class="carousel-inner" role="listbox">
+                {% for service in services %}
+                    {% if service.id  == 1%}
+                        <div class="item active">
+                            <!-- Slide Background -->
+                            <img src="{{ service.ppics.url }}" alt="{{ service.pname }}"  class="img-responsive"/>
+                            <div class="bs-slider-overlay"></div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <!-- Slide Text Layer -->
+                                    <div class="slide-text slide_style_left">
+                                        <h1 data-animation="animated zoomInRight">{{ service.pname }}</h1>
+                                        <p data-animation="animated fadeInLeft"> {{ service.pintro }}</p>
+                                        <a href="{% url 'service' service.id %}" target="_blank" class="btn btn-primary" data-animation="animated fadeInLeft">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="item">
+
+                    <!-- Slide Background -->
+                    <img src="{{ service.ppics.url }}" alt="{{ service.pname }}"  class="slide-image"/>
+                    <div class="bs-slider-overlay"></div>
+
+                    <div class="container">
+                        <div class="row">
+                            <!-- Slide Text Layer -->
+                            <div class="slide-text slide_style_left">
+                                <h1 data-animation="animated zoomInRight">{{ service.pname }}</h1>
+                                <p data-animation="animated fadeInLeft"> {{ service.pintro }}</p>
+                                <a href="{% url 'service' service.id %}" target="_blank" class="btn btn-primary" data-animation="animated fadeInLeft">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% endif %}
+
+                {% endfor %}
+                </div><!-- End of Wrapper For Slides -->
+
+            <!-- Left Control -->
+            <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
+                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <!-- Right Control -->
+            <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
+                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div> <!-- End  bootstrap-touch-slider Slider -->
+    </div>
+</div>
+<!--<div id="particles"></div>-->
+<div class="container">
 
     <div style="margin-top: 50px;" class="row">
             {% block pageHeading %}
-            <div class="jumbotron text-center">
-                <p><strong>We are an organisation dedicated to building apps serving each and every one of our client needs. This comes in the form of the <b>Services</b> that we offer, which includes <em> websites designs and development, mobile and desktop applications development, installations, domain name registration, hosting and cloud services.</em></strong></p>
+            <div style="background: #ff9200; color: white;" class="jumbotron">
+                <div class="london-title">
+                    <h2>Welcome to Deaspo Studios Inc.</h2>
+                    <h3>About us</h3>
+                </div>
+                <p>We are an organisation dedicated to building apps serving each and every one of our client needs. This comes in the form of the Services that we offer, which includes websites designs and development, mobile and desktop applications development, installations, domain name registration, hosting and cloud services.</p>
+                <a href="{% url 'about' %}" target="_blank" class="btn btn-primary" data-animation="animated fadeInLeft">Read More</a>
             </div>
 
 
@@ -129,7 +211,6 @@
                             <div class="panel-footer first pull-left">
                                 <span><a href="{% url 'service' service.id %}">Visit the service page to find all available options</a> </span>
                             </div>
-                            <div id="particles"></div>
                         </div>
                     </div>
                 {% endif %}
@@ -148,22 +229,22 @@
                 <div class="panel-rightbody">
                     <div>
                         <i class="fa fa-facebook-square"></i>
-                        <p><a href="">Facebook <br>Page</a></p>
+                        <p><a href="https://www.facebook.com/deaspostudios/">Facebook <br>Page</a></p>
                     </div>
 
                     <div>
                         <i class="fa fa-twitter-square"></i>
-                        <p><a href="#">Twiiter <br>Page</a></p>
+                        <p><a href="https://twitter.com/deaspostudios">Twitter <br>Page</a></p>
                     </div>
 
                     <div>
                         <i class="fa fa-linkedin-square"></i>
-                        <p><a href="#">Linkedin <br>Profile</a></p>
+                        <p><a href="https://www.linkedin.com/company/deaspo-studios-inc.?trk=biz-companies-cym">Linkedin <br>Profile</a></p>
                     </div>
 
                     <div>
                         <i class="fa fa-github-square"></i>
-                        <p><a href="https://github.com/deaspostudios">Githube <br>Page</a></p>
+                        <p><a href="https://github.com/deaspostudios">Github <br>Page</a></p>
                     </div>
 
                     <div>
@@ -279,7 +360,7 @@
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Company </h3>
                     <ul>
-                        <li> <a href="#"> About </a> </li>
+                        <li> <a href="{% url 'about' %}"> About </a> </li>
                         <li> <a href="#"> Blog </a> </li>
                         <li> <a href="#"> Careers </a> </li>
                         <li> <a href="#"> Legal </a> </li>
@@ -288,21 +369,17 @@
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Products </h3>
                     <ul>
-                        <li> <a href="#"> Web Design </a> </li>
-                        <li> <a href="#"> Development </a> </li>
-                        <li> <a href="#"> Mobile Applications </a> </li>
-                        <li> <a href="#"> Desktop Applications </a> </li>
-                        <li> <a href="#"> Hosting</a> </li>
-                        <li> <a href="#"> Cloud </a> </li>
+                        {% for service in services %}
+                            <li> <a href="{% url 'service' service.id %}"> {{ service.pname }}</a> </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Projects </h3>
                     <ul>
-                        <li> <a href="#"> Websites </a> </li>
-                        <li> <a href="#"> Mobile </a> </li>
-                        <li> <a href="#"> Desktops </a> </li>
-                        <li> <a href="#"> Concepts </a> </li>
+                        {% for project in projects %}
+                            <li> <a href="{% url 'project' project.id %}"> {{ project.name }}</a> </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
@@ -325,9 +402,9 @@
                         </li>
                     </ul>
                     <ul class="social">
-                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-linkedin">   </i> </a> </li>
+                        <li> <a href="https://www.facebook.com/deaspostudios/"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="https://twitter.com/deaspostudios"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="https://www.linkedin.com/company/deaspo-studios-inc.?trk=biz-companies-cym"> <i class="fa fa-linkedin">   </i> </a> </li>
                         <li> <a href="https://github.com/deaspostudios"> <i class="fa fa-github-square">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
                     </ul>
@@ -612,6 +689,7 @@
     <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/bg_animation.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
     <script>
 
     </script>

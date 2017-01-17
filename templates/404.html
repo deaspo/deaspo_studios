@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contact %}
+
+{% endblock %}
+
+
+{% block pageHeading %}
+            <div class="col-sm-6 col-md-6">
+                <img src="{% static 'images/oops_404.jpg' %}" alt="Page Not Found">
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div style="background: #4b5b5b; color: white;" class="jumbotron">
+                <div class="london-title">
+                    <h2>The page you are looking for was not found.</h2>
+                    <h3>Are you sure you entered the correct address?</h3>
+                </div>
+                <p>Try reloading the page or you can contact us and tell us about the problem you're experiencing.</p>
+                <a href="javascript:history.go(-1)" class="btn btn-primary" data-animation="animated fadeInLeft">Go back</a>
+            </div>
+            </div>
+
+
+        <marquee behavior="alternate"><h1>{% block pageHead %}Please try reloading the page again {% endblock pageHead %}</h1></marquee>
+        {% endblock pageHeading %}
+
+{% block pageContent %}
+{% endblock pageContent %}

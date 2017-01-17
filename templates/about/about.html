@@ -132,7 +132,7 @@
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Company </h3>
                     <ul>
-                        <li> <a href="#"> About </a> </li>
+                        <li> <a href="{% url 'about' %}"> About </a> </li>
                         <li> <a href="#"> Blog </a> </li>
                         <li> <a href="#"> Careers </a> </li>
                         <li> <a href="#"> Legal </a> </li>
@@ -141,21 +141,17 @@
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Products </h3>
                     <ul>
-                        <li> <a href="#"> Web Design </a> </li>
-                        <li> <a href="#"> Development </a> </li>
-                        <li> <a href="#"> Mobile Applications </a> </li>
-                        <li> <a href="#"> Desktop Applications </a> </li>
-                        <li> <a href="#"> Hosting</a> </li>
-                        <li> <a href="#"> Cloud </a> </li>
+                        {% for service in services %}
+                            <li> <a href="{% url 'service' service.id %}"> {{ service.pname }}</a> </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Projects </h3>
                     <ul>
-                        <li> <a href="#"> Websites </a> </li>
-                        <li> <a href="#"> Mobile </a> </li>
-                        <li> <a href="#"> Desktops </a> </li>
-                        <li> <a href="#"> Concepts </a> </li>
+                        {% for project in projects %}
+                            <li> <a href="{% url 'project' project.id %}"> {{ project.name }}</a> </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
@@ -178,10 +174,10 @@
                         </li>
                     </ul>
                     <ul class="social">
-                        <li> <a href="#"> <i class=" fa fa-facebook">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-twitter">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-linkedin">   </i> </a> </li>
-                        <li> <a href="#"> <i class="fa fa-github-square">   </i> </a> </li>
+                        <li> <a href="https://www.facebook.com/deaspostudios/"> <i class=" fa fa-facebook">   </i> </a> </li>
+                        <li> <a href="https://twitter.com/deaspostudios"> <i class="fa fa-twitter">   </i> </a> </li>
+                        <li> <a href="https://www.linkedin.com/company/deaspo-studios-inc.?trk=biz-companies-cym"> <i class="fa fa-linkedin">   </i> </a> </li>
+                        <li> <a href="https://github.com/deaspostudios"> <i class="fa fa-github-square">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-youtube">   </i> </a> </li>
                     </ul>
                 </div>

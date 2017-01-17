@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contact %}
 
-</body>
-</html>
+{% endblock %}
+
+
+{% block pageHeading %}
+            <div class="col-sm-6 col-md-6">
+                <img src="{% static 'images/oops_500.png' %}" alt="Page Not Found">
+            </div>
+            <div class="col-sm-6 col-md-6 col-xs-12">
+                <div style="background: #4b5b5b; color: white;" class="jumbotron">
+                <div class="london-title">
+                    <h2>Server internal error.</h2>
+                    <h3>There was a problem with loading the page</h3>
+                </div>
+                <p>Something crashed, when loading the page. Try again. You can contact us regarding this error.</p>
+                <a href="javascript:history.go(-1)" class="btn btn-primary" data-animation="animated fadeInLeft">Go back</a>
+            </div>
+            </div>
+
+
+        <marquee behavior="alternate"><h1>{% block pageHead %}We are very sorry, try reloading the page {% endblock pageHead %}</h1></marquee>
+        {% endblock pageHeading %}
+
+{% block pageContent %}
+{% endblock pageContent %}
