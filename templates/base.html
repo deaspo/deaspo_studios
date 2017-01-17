@@ -43,7 +43,7 @@
 		</div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-right">
-               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
+               {% block ser_proj %}<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
                          {% for service in services %}
                              <li><a href="{% url 'service' service.id %}">{{ service.pname }}</a></li>
@@ -58,7 +58,7 @@
                             <li class="divider"></li>
                        {% endfor %}
                    </ul>
-               </li>
+               </li>{% endblock ser_proj %}
                 <li><a href="{% url 'about' %}">About<span class="sr-only">(current)</span></a> </li>
                 {% block contact %}
                 <li><a href="#contactForm" data-toggle="modal" data-target="#contactForm" data-backdrop="static" data-keyboard="false" class="main-menu-link contact block-keep-ratio__content flexbox-center">Contact us<span class="sr-only">(current)</span></a> </li>{% endblock contact %}
