@@ -71,7 +71,9 @@
 <<!-- beginning of organisation motto -->
 
 <!--end of organisation motto-->
+
 <!-- beginning of left and right sidebars -->
+{% block sliders %}
 <div class="container">
     <div class="row" id="intro-ssection">
         <div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
@@ -146,6 +148,7 @@
         </div> <!-- End  bootstrap-touch-slider Slider -->
     </div>
 </div>
+{% endblock sliders %}
 <!--<div id="particles"></div>-->
 <div class="container">
 
@@ -168,7 +171,7 @@
             {% block pageContent %}
             {% for service in services %}
                 {% if forloop.counter < half %}
-                    <div style="margin-bottom: 30px;min-height: 585px;max-height: 585px;" class="col-xs-12 col-md-6">
+                    <div style="margin-bottom: 50px;min-height: 585px;max-height: 585px;" class="col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading clickable">
                                 <h3> {{ service.pname }}</h3><br>
@@ -186,12 +189,12 @@
                                 </div>
                             </div>
                             <div class="panel-footer first pull-left">
-                                <span><a href="{% url 'service' service.id %}">Visit the service page to find all available options</a> </span>
+                                <span><a href="{% url 'service' service.id %}">Visit the service page</a> </span>
                             </div>
                         </div>
                     </div>
                 {% else %}
-                    <div style="margin-bottom: 40px;min-height: 585px;max-height: 585px;" class="col-xs-12 col-md-6">
+                    <div style="margin-bottom: 50px;min-height: 585px;max-height: 585px;" class="col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading clickable">
                                 <h3> {{ service.pname }}</h3><br>
@@ -209,7 +212,7 @@
                                 </div>
                             </div>
                             <div class="panel-footer first pull-left">
-                                <span><a href="{% url 'service' service.id %}">Visit the service page to find all available options</a> </span>
+                                <span><a href="{% url 'service' service.id %}">Visit the service page</a> </span>
                             </div>
                         </div>
                     </div>

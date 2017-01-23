@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^service/(\d+)/(\d+)/order$', views.order, name='order'),
     url(r'^mobile/(\d+)/order$', views.mobileOrder, name='mobile'),
     url(r'^desktop/(\d+)/order$', views.desktopOrder, name='desktop'),
+    url(r'^analytic/(\d+)/order$', views.analyticOrder, name='analytics'),
     url(r'check/(\d+)/(\d+)/?$', views.selfCheck,name='check'),
     url(r'login/?$', views.signin,name='login'),
     url(r'logout/?$',views.sign_out,name='logout'),

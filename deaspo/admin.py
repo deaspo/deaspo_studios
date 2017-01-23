@@ -1,5 +1,5 @@
 from django.contrib import admin
-from deaspo.models import Project, Product, Plan, EmailPlan, ProductWebOrder, UserProfile, Comment, Contact, Staff, Social, OrderAddress
+from deaspo.models import Project, Product, Plan, EmailPlan, ProductWebOrder, UserProfile, Comment, Contact, Staff, Social, OrderAddress, DesktopOrders, MobileOrders, AnalyticOrder
 #add search and related projects functionality
 class ProductSearch(admin.ModelAdmin):
     list_display = ['pname']
@@ -37,3 +37,6 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(Staff, StaffSearch)
 admin.site.register(Social, SocialAdmin)
 admin.site.register(OrderAddress, OrdersAdmin)
+admin.site.register(AnalyticOrder)
+admin.site.register(MobileOrders)
+admin.site.register(DesktopOrders)

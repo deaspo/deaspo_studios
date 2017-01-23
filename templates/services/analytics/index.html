@@ -1,0 +1,153 @@
+{% extends 'services/desktop/index.html' %}
+{% load staticfiles %}
+
+{% block desc %}
+    <div class="analytics_image1 col-md-3 col-sm-3 col-xs-12"></div>
+    <div class="col-md-6 col-sm-6  col-xs-12">
+        <p> {{ service.pdesc|linebreaks }}</p>
+
+    </div>
+    <div class="analytics_image2 col-md-3 col-sm-3 col-xs-12"></div>
+{% endblock desc %}
+
+{% block windows %}
+    <div class="mobile_description">
+        <div class="container">
+            <div class="row">
+                <div class="ana_win col-md-5 col-sm-5 col-xs-12"></div>
+                <div class="col-md-7 col-sm-7">
+                    <div class="london-title">
+                        <div class="heading">
+                            <h2>Need help understanding?</h2>
+                            <h3>We have the technologies and techniques to help you make more-informed business decisions.</h3>
+                        </div>
+                    </div>
+                    <p> {{ service.pshortdesc|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock windows %}
+
+{% block softDev %}
+    <div class="php_serivces_bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="technial_expert_list change_color">
+                        <div class="london-title">
+                            <h2>Our Services</h2>
+                            <h3>Our Data Analytics services include:</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12 col-md-12 b_bg">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:">
+                                  <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s1.png'%}" alt="Custom Software Development" title="Custom Software Development"></div>
+                                    <div class="cotnent">Research Proposal development</div>
+                                  </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="es">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s2.png'%}" alt="Software Reengineering Services" title="Software Reengineering Services"></div>
+                            <div class="cotnent"> Research instruments development e.g. questionnaire design and development</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="s_management_s">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s3.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                            <div class="cotnent"> Pilot studies</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="s_maintenance_s">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s4.png'%}" alt="Software Maintenance Services" title="Software Maintenance Services"></div>
+                            <div class="cotnent"> Market research</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s5.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Customer and employee satisfaction surveys </div>
+                                </div>
+                              </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full"> <a href="javascript:" data-id="newaddc">
+                          <div class="services_provider_wrapper">
+                            <div class="img"><img src="{% static  'services/desktop/images/s6.png'%}" alt="Data Visualization &amp; Analytics" title="Data Visualization &amp; Analytics"></div>
+                            <div class="cotnent"> Advertising services</div>
+                          </div>
+                          </a> </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s1.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Opinion polls and Social Research </div>
+                                </div>
+                              </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s6.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Pain & paper, online and mobile based data collection services</div>
+                                </div>
+                              </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s4.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Data storage and databases </div>
+                                </div>
+                              </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s3.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Data Analysis </div>
+                                </div>
+                              </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s2.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Data mining </div>
+                                </div>
+                              </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 php-services-full">
+                            <a href="javascript:" data-id="wp">
+                                <div class="services_provider_wrapper">
+                                    <div class="img"><img src="{% static  'services/desktop/images/s1.png'%}" alt="Software Management Services" title="Software Management Services"></div>
+                                    <div class="cotnent"> Setting up RServer for you </div>
+                                </div>
+                              </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+{% block a1 %}
+    <a href="{% url 'analytics' service.id %}" class="btn btn-primary">Seek Our Services</a>
+{% endblock a1 %}
+{% block a2 %}
+    <a href="{% url 'analytics' service.id %}" class="get-in-touch no-margin">Hire Us</a>
+{% endblock a2 %}
+{% block a3 %}
+    <a href="{% url 'analytics' service.id %}" class="get-in-touch no-margin">Hire Us</a>
+{% endblock a3 %}
+{% block a4 %}
+    <a href="{% url 'analytics' service.id %}" class="btn btn-primary">
+{% endblock a4 %}

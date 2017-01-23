@@ -8,11 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'services/mobile/css/mobile.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'services/mobile/css/simple-line-icons.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'services/desktop/css/desktop.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'services/analytics/css/analytics.css' %}">
 {% endblock addStyles %}
 
 {% block pageHeading %}
 
 {% endblock pageHeading %}
+{% block sliders %}
+
+{% endblock sliders %}
 
 {% block pageContent %}
     <div class="banner_lg  text-center">
@@ -53,7 +57,7 @@
     <div class="mobile_description">
         <div class="container">
             <div class="row">
-                <div class="sect_win col-md-3 col-sm-3 col-xs-12"></div>
+                {% block win_wallpaper %}<div class="sect_win col-md-3 col-sm-3 col-xs-12"></div> {% endblock win_wallpaper %}
                 <div class="col-md-9 col-sm-9">
                     <div class="london-title">
                         <div class="heading">
@@ -95,6 +99,7 @@
         {% endblock android %}
     {% block softPr %}
         {% endblock softPr %}
+    {% block whyHire %}
     <div class="container">
         <div class="row mobile_description">
             <div class="col-sm-7 col-xs-12 col-md-7">
@@ -129,6 +134,7 @@
             </div>
         </div>
     </div>
+        {% endblock whyHire %}
     {% block soft_prod_dev %}
 
     {% endblock soft_prod_dev %}

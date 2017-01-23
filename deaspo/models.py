@@ -344,3 +344,25 @@ class DesktopOrders(models.Model):
 choices = (('A','Kenya'),
                ('B','Others'),)
 
+
+class AnalyticOrder(models.Model):
+    hosting_plan = models.CharField(max_length=100)
+    hosting_start_price = models.DecimalField(decimal_places=2, validators=[MinValueValidator(limit_value=0, message='Negatives not allowed')], max_digits=7)
+    fname = models.CharField(max_length=100)
+    cname = models.CharField(max_length=100)
+    sname = models.CharField(max_length=100)
+    zcode = models.IntegerField(validators=[MinLengthValidator(limit_value=5, message="Enter the correct code"),
+                                            MaxLengthValidator(limit_value=5, message="Enter the correct code"),
+                                            MinValueValidator(limit_value=00000, message="Cannot be negative")])
+    city = models.CharField(max_length=100)
+    choices = (('A', 'Kenya'),
+               ('B', 'Others'),)
+    country = models.CharField(max_length=100, choices=choices, default="Kenya")
+    pnumber = models.IntegerField(validators=[MinLengthValidator(limit_value=10, message="Enter the correct code"),
+                                              MaxLengthValidator(limit_value=10, message="Enter the correct code"),
+                                              MinValueValidator(limit_value=0000000000, message="Cannot be negative")])
+    email = models.EmailField(validators=[EmailValidator(message="Invalid email address")])
+
+choices = (('A','Kenya'),
+               ('B','Others'),)
+
