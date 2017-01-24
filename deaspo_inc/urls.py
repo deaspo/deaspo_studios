@@ -25,7 +25,7 @@ from deaspo.forms import RegistrationFormWithNext
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
-    url(r'^services/?$', views.services, name='services'),
+    #url(r'^services/?$', views.services, name='services'),
     url(r'^service/(\d+)/?$', views.service, name='service'),
     url(r'^projects/?$',views.projects,name='projects'),
     url(r'^project/(\d+)/?$', views.project,name='project'),

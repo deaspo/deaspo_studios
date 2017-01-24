@@ -230,91 +230,97 @@
     </div>
 {% endblock pageContent %}
 {% block reviews %}
-    <div class="review-block">
-        <h2 class="text-left"> Client Testimonials & Reviews </h2>
-        {% for comment in service.comments.all %}
-            <div class="row">
-                <div class="col-sm-3">
-                    <img src="{{ comment.pic.url }}" class="img-rounded">
-                    <div class="review-block-name"><a href="#">{{ comment.user }}</a></div>
-                    <div class="review-block-date">Posted<br/>{{ comment.posted }}</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="review-block-title">{{ comment.title }}</div>
-                    <div class="review-block-description">{{ comment.body }}</div>
-                </div>
-                <div class="pull-left" style="width:35px; line-height:1;">
-                    <div style="height:9px; margin:5px 0;">{{ comment.rating }} <span class="fa fa-star checked"></span></div>
-                </div>
-                <div class="pull-left" style="width:180px;">
-                    <div class="progress" style="height:9px; margin:8px 0;">
-                        <div class="{% if comment.rating == 5 %}
-                                                    progress-bar progress-bar-success
-                                                 {% elif comment.rating == 4 %}
-                                                    progress-bar progress-bar-primary
-                                                {% elif comment.rating == 3 %}
-                                                    progress-bar progress-bar-info
-                                                {% elif comment.rating == 2 %}
-                                                    progress-bar progress-bar-warning
-                                                {% elif comment.rating == 1 %}
-                                                    progress-bar progress-bar-danger
-                                                {% else %}
-                                                progress-bar
-                                                   {% endif %}" role="progressbar" aria-valuenow="{{ comment.rating }}" aria-valuemin="0" aria-valuemax="5" style="{% if comment.rating == 5 %}
-                                            width: 100%;
-                                            {% elif comment.rating == 4 %}
-                                                width: 80%;
-                                            {% elif comment.rating == 3 %}
-                                                width: 60%;
-                                            {% elif comment.rating == 2 %}
-                                                width: 40%;
-                                            {% elif comment.rating == 1 %}
-                                                width: 20%;
-                                            {% else %}
-                                                width: 0%;
-                                        {% endif %}">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
-                                    </div>
+            <div class="review-block col-xs-12 col-sm-12 col-md-12">
+                <div class="container">
+                    <div class="row">
+                        <h2 class="text-left"> Client Testimonials & Reviews </h2>
+                        {% for comment in service.comments.all %}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="{{ comment.pic.url }}" height="50%" width="50%" class="img-rounded">
+                                    <div class="review-block-name"><a href="#">{{ comment.user }}</a></div>
+                                    <div class="review-block-date">Posted<br/>{{ comment.posted }}</div>
                                 </div>
+                                <div class="col-sm-9">
+                                    <div class="review-block-title">{{ comment.title }}</div>
+                                    <div class="review-block-description">{{ comment.body }}</div>
+                                </div>
+                                <div class="pull-left" style="width:35px; line-height:1;">
+                                    <div style="height:9px; margin:5px 0;">{{ comment.rating }} <span class="fa fa-star checked"></span></div>
+                                </div>
+                                <div class="pull-left" style="width:180px;">
+                                    <div class="progress" style="height:9px; margin:8px 0;">
+                                        <div class="{% if comment.rating == 5 %}
+                                                                    progress-bar progress-bar-success
+                                                                 {% elif comment.rating == 4 %}
+                                                                    progress-bar progress-bar-primary
+                                                                {% elif comment.rating == 3 %}
+                                                                    progress-bar progress-bar-info
+                                                                {% elif comment.rating == 2 %}
+                                                                    progress-bar progress-bar-warning
+                                                                {% elif comment.rating == 1 %}
+                                                                    progress-bar progress-bar-danger
+                                                                {% else %}
+                                                                progress-bar
+                                                                   {% endif %}" role="progressbar" aria-valuenow="{{ comment.rating }}" aria-valuemin="0" aria-valuemax="5" style="{% if comment.rating == 5 %}
+                                                            width: 100%;
+                                                            {% elif comment.rating == 4 %}
+                                                                width: 80%;
+                                                            {% elif comment.rating == 3 %}
+                                                                width: 60%;
+                                                            {% elif comment.rating == 2 %}
+                                                                width: 40%;
+                                                            {% elif comment.rating == 1 %}
+                                                                width: 20%;
+                                                            {% else %}
+                                                                width: 0%;
+                                                        {% endif %}">
+                                                            <span class="sr-only">80% Complete (danger)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                            </div>
-                        {% empty %}
-                            <h3 class="text-left"> No reviews, be the first </h3>
-                        {% endfor %}
+                                            </div>
+                                        {% empty %}
+                                            <h3 class="text-left"> No reviews, be the first </h3>
+                                        {% endfor %}
 
-        <hr/>
-    </div>
-    <div class="review-block row" style="margin-top:40px;">
-
-        <div class="col-md-12">
-            <div class="well well-sm">
-                <div class="text-right">
-                    <a class="btn btn-success btn-green" id="open-review-box">Leave a Review</a>
-                </div>
-
-                <div class="row" id="post-review-box" style="display:none;">
-                    <div class="col-md-12">
-                        <form accept-charset="UTF-8" action="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form }}
-                            <input type="hidden" name="form-type" value="review-form" /> <!-- set type -->
-                                        <!--<input id="ratings-hidden" name="rating" type="hidden">
-                                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>-->
-
-                            <div class="text-right">
-                                <div class="stars starrr" data-rating="0"><p style="color: black;">Don't forget to rate this product!</p></div>
-                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                    <span class="fa fa-remove"></span>Cancel</a>
-                                <button class="btn btn-success btn-lg" type="submit">Save</button>
-                            </div>
-                        </form>
+                        <hr/>
                     </div>
                 </div>
             </div>
+            <div class="review-block col-xs-12 col-sm-12 col-md-12" style="margin-top:40px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well well-sm">
+                                <div class="text-right">
+                                    <a class="btn btn-success btn-green" id="open-review-box">Leave a Review</a>
+                                </div>
 
-        </div>
-    </div>
+                                <div class="row" id="post-review-box" style="display:none;">
+                                    <div class="col-md-12">
+                                        <form accept-charset="UTF-8" action="?next={{ request.path }}" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {{ form }}
+                                            <input type="hidden" name="form-type" value="review-form" /> <!-- set type -->
+                                                        <!--<input id="ratings-hidden" name="rating" type="hidden">
+                                                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>-->
+
+                                            <div class="text-right">
+                                                <div class="stars starrr" data-rating="0"><p style="color: black;">Don't forget to rate this product!</p></div>
+                                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                                    <span class="fa fa-remove"></span>Cancel</a>
+                                                <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 {% endblock reviews %}
 {% block addScripts %}

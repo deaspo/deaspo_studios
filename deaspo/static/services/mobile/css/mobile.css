@@ -195,14 +195,10 @@ a, a.hover {
 /*   */
 /* review sections */
 .review-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px;
-	border-radius:3px;
 	margin-bottom:15px;
 	margin-top: 15px;
-	margin-left: 20px;
-	margin-right: 20px;
+	#margin-left: 100px;
+	#margin-right: 100px;
 }
 .review-block-name{
 	font-size:12px;

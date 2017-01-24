@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/heading_text.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bg_animation.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/left_right_panel.css' %}">
+    <<link rel="stylesheet" type="text/css" href="{% static 'css/service_page.css' %}">
+    <link rel="stylesheet" href="{% static 'services/service/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     {% block addStyles %}
     {% endblock addStyles %}
@@ -312,6 +314,7 @@
                                     <div class="well">Have a question or comment? Fill out the following information and we will get back to you as soon as possible.</div>
                                     <form class="form-horizontal" method="post" role="form" >
                                         {% csrf_token %}
+                                        <input type="hidden" name="form-type" value="contact-form" />
                                         <div class="form-group">
                                             <label for="email" class="col-sm-2 control-label">E-mail</label>
                                             <div class="col-sm-6">
@@ -693,6 +696,7 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/bg_animation.js' %}"></script>
     <script src="{% static 'js/slider.js' %}"></script>
+    <script src="{% static 'services/service/js/custom.js' %}"></script>
     <script>
 
     </script>

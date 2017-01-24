@@ -19,7 +19,7 @@ from django.contrib import messages
 class RegisterView(RegistrationView):
     def get_success_url(self, user):
         try:
-            return '/services/'
+            return '/'
         except Exception, e:
             print str(e)
             pass
@@ -61,7 +61,9 @@ def service(request, service_id):
     else:
         page = 'services/service.html'
     if request.POST:
+        next = request.GET.get('next')
         if request.POST['form-type'] == u"review-form":
+            cform = ContactForm()
             form = CommentForm(request.POST)
             if form.is_valid():
                 comment = form.save(commit=False)
@@ -69,16 +71,17 @@ def service(request, service_id):
                 comment.save()
                 messages.add_message(request, messages.SUCCESS, "Review posted!. We value your feedback!",
                                      fail_silently=True)
-                next = '/services/%d' % int(service_id)
-                HttpResponseRedirect(next)
+                form = CommentForm()
+                #HttpResponseRedirect('')
             else:
                 print form.errors
         else:
+            form = CommentForm()
             cform = ContactForm(request.POST)
             if cform.is_valid():
                 cform.save()
-                next = '/services/%d' % int(service_id)
-                HttpResponseRedirect(next)
+                cform = ContactForm()
+                #HttpResponseRedirect('')
     else:
         form = CommentForm()
         cform = ContactForm()
@@ -263,7 +266,7 @@ def index(request):
         cform = ContactForm(request.POST)
         if cform.is_valid():
             cform.save()
-            return HttpResponseRedirect('/')
+            return redirect('/')
     else:
         cform = ContactForm()
     products = Product.objects.all() #returns all the products and services
@@ -332,5 +335,6 @@ def mobileOrder(request, service_id):
         if form.is_valid():
             form.hosting_plan = service.pname
             form.hosting_plan_price = service.p_mstart_price
+            form = MobileOrderForm()
             return HttpResponseRedirect('/')
     return render(request, 'services/mobile/order.html',{'service': service,'form': form, 'services': products,'projects': projects, 'email': request.user.email, 'fullname': request.user.get_full_name(),'username': request.user.username, 'picture': request.user.profile.picture})

@@ -138,7 +138,7 @@
                         {% for comment in service.comments.all %}
                             <div class="row">
                                 <div class="col-sm-3">
-                                        <img src="{{ comment.pic.url }}" class="img-rounded">
+                                        <img src="{{ comment.pic.url }}" height="50%" width="50%" class="img-rounded">
                                         <div class="review-block-name"><a href="#">{{ comment.user }}</a></div>
                                         <div class="review-block-date">Posted<br/>{{ comment.posted }}</div>
                                 </div>
