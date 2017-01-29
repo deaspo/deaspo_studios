@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bg_animation.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/left_right_panel.css' %}">
     <<link rel="stylesheet" type="text/css" href="{% static 'css/service_page.css' %}">
+    <<link rel="stylesheet" type="text/css" href="{% static 'css/hover_nav.css' %}">
     <link rel="stylesheet" href="{% static 'services/service/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     {% block addStyles %}
@@ -45,8 +46,9 @@
 		</div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-right">
-               {% block ser_proj %}<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
-                     <ul class="dropdown-menu" role="menu">
+               {% block ser_proj %}
+                   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
                          {% for service in services %}
                              <li><a href="{% url 'service' service.id %}">{{ service.pname }}</a></li>
                          {% endfor %}
@@ -54,7 +56,7 @@
                </li>
                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects
                    <b class="caret"></b></a>
-                   <ul class="dropdown-menu" role="menu">
+                   <ul class="dropdown-menu">
                        {% for project in projects %}
                             <li><a href="{{ project.address }}" target="_blank">{{ project.name }}</a></li>
                             <li class="divider"></li>
